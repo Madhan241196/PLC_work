@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Application</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        form { margin-bottom: 20px; }
+        input, button { padding: 10px; margin: 5px 0; width: 100%; }
+        #preview { border: 1px solid #ccc; padding: 10px; margin-top: 20px; }
+        #save { display: none; }
+    </style>
+</head>
+<body>
+    <h1>Fill out your details</h1>
+    <form id="form">
+        <input type="text" id="name" placeholder="Name" required>
+        <input type="text" id="email" placeholder="Email" required>
+        <input type="text" id="phone" placeholder="Phone" required>
+        <button type="button" id="previewButton">Preview</button>
+    </form>
+    <div id="preview"></div>
+    <button type="button" id="save">Save to Excel</button>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
