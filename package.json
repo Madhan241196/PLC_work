@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^26.2.0",
+    "electron": "^26.6.10",
     "xlsx": "^0.18.5"
   }
 }
