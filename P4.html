@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bluefalo Petcare</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1s ease-in-out;
+        }
+        .form-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.9); /* Make form background slightly transparent */
+        }
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .form-header .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px; /* Adjust padding to move logos slightly towards the center */
+        }
+        .form-header h2 {
+            font-size: 1.5rem;
+            color: #333;
+            margin: 0 10px;
+            flex: 1;
+        }
+        .form-header h4 {
+            font-size: 1.2rem;
+            color: #00796b;
+         
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 10px 0 0;
+            flex: 1;
+            text-align: center;
+        }
+        .form-header .logo-left {
+            height: 80px;
+        }
+        .form-header .logo-right {
+            height: 50px;
+        }
+        .form-group label {
+            font-weight: bold;
+            color: #555;
+        }
+        .form-control {
+            border-radius: 5px;
+        }
+        .btn-primary {
+            background-color: #00796b;
+            border-color: #00796b;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container form-container">
+        <div class="form-header">
+            <div class="header-content">
+                <img src="E:\Python\Report\logo.png" alt="Logo" class="logo-left">
+                <div>
+                    <h2>บริษัท บลูฟาโล่ เพ็ทแคร์ จำกัด</h2>
+                    <h4>บันทึกการทำงานของ Extrude and Dryer</h4>
+                </div>
+                <img src="E:\Python\Report\logo-B&C.png" alt="Logo B&C" class="logo-right">
+            </div>
+        </div>
+        <form>
+            <!-- New fields only -->
+            <div class="form-group row">
+                <label for="streamHeader" class="col-sm-4 col-form-label">Stream Header (bar):</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="streamHeader">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="moistureDyer" class="col-sm-4 col-form-label">ความชื้น Dyer:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="moistureDyer">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="moistureCooler" class="col-sm-4 col-form-label">ความชื้น Cooler:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="moistureCooler">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="roomTemperature" class="col-sm-4 col-form-label">อุณหภูมิห้อง:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="roomTemperature">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="relativeHumidity" class="col-sm-4 col-form-label">ความชื้นสัมพัทธ์:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="relativeHumidity">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="machineMoisture" class="col-sm-4 col-form-label">ความชื้นหน้าเครื่อง:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="machineMoisture">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="physicalIssues" class="col-sm-4 col-form-label">กายภาพและปัญหาที่พบ:</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" id="physicalIssues" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="remarks" class="col-sm-4 col-form-label">หมายเหตุ:</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" id="remarks" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-12 text-right">
+                    <button type="submit" class="btn btn-primary">Preview</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        const images = [
+            "file:///E:/Python/Report/images/B1.jpg",
+            "file:///E:/Python/Report/images/B2.jpg",
+            "file:///E:/Python/Report/images/B3.jpg",
+            "file:///E:/Python/Report/images/B4.jpg",
+            "file:///E:/Python/Report/images/B5.jpg",
+            "file:///E:/Python/Report/images/B6.jpg",
+            "file:///E:/Python/Report/images/B7.jpg",
+            "file:///E:/Python/Report/images/B8.jpg",
+            "file:///E:/Python/Report/images/B9.jpg"
+        ];
+
+        let currentIndex = 0;
+
+        function changeBackgroundImage() {
+            document.body.style.backgroundImage = `url(${images[currentIndex]})`;
+            currentIndex = (currentIndex + 1) % images.length;
+        }
+
+        setInterval(changeBackgroundImage, 3000);
+        window.onload = changeBackgroundImage;
+    </script>
+</body>
+</html>
