@@ -1,49 +1,97 @@
-const XLSX = require('xlsx');
-const { writeFile } = require('fs');
-const path = require('path');
+const images = [
+    "file:///E:/Python/Report/images/B1.jpg",
+    "file:///E:/Python/Report/images/B2.jpg",
+    "file:///E:/Python/Report/images/B3.jpg",
+    "file:///E:/Python/Report/images/B4.jpg",
+    "file:///E:/Python/Report/images/B5.jpg",
+    "file:///E:/Python/Report/images/B6.jpg",
+    "file:///E:/Python/Report/images/B7.jpg",
+    "file:///E:/Python/Report/images/B8.jpg",
+    "file:///E:/Python/Report/images/B9.jpg"
+];
+let currentImageIndex = 0;
 
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('form');
-    const previewButton = document.getElementById('previewButton');
-    const preview = document.getElementById('preview');
-    const saveButton = document.getElementById('save');
+function changeBackgroundImage() {
+    document.body.style.backgroundImage = `url(${images[currentImageIndex]})`;
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+}
 
-    previewButton.addEventListener('click', () => {
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
+setInterval(changeBackgroundImage, 5000); // เปลี่ยนทุก 5 วินาที
+changeBackgroundImage(); // เริ่มการเปลี่ยนภาพทันทีที่โหลดหน้าเว็บ
 
-        if (name && email && phone) {
-            preview.innerHTML = `
-                <h3>Preview:</h3>
-                <p>Name: ${name}</p>
-                <p>Email: ${email}</p>
-                <p>Phone: ${phone}</p>
-            `;
-            saveButton.style.display = 'block';
-        } else {
-            preview.innerHTML = '<p>Please fill in all fields.</p>';
-            saveButton.style.display = 'none';
-        }
+document.getElementById("saveBtn").addEventListener("click", function() {
+    const formData = new FormData(document.getElementById("dataForm"));
+    const data = {
+        User: formData.get("user"),
+        Shift: formData.get("shift"),
+        Date: formData.get("date"),
+        "Extruder No": formData.get("extruder-no"),
+        "Start Time": formData.get("start-time"),
+        "End Time": formData.get("end-time"),
+        "Name Food": formData.get("name-food"),
+        "Code Lot": formData.get("code-lot"),
+        Shape: formData.get("shape"),
+        Size: formData.get("size"),
+        Color: formData.get("color"),
+        "Number Dir": formData.get("number-dir"),
+        "Number of Blades": formData.get("number-blades"),
+        Oil: formData.get("oil"),
+        "Lot color oil": formData.get("lot-color-oil"),
+        "Weight color oil": formData.get("weight-color-oil")
+    };
+
+    fetch('http://127.0.0.1:5000/save_data', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
     });
+});
 
-    saveButton.addEventListener('click', () => {
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
+// เพิ่มฟังก์ชันการบันทึกข้อมูลลงใน Excel และเปิดหน้า P3manual.html
+document.getElementById("saveToExcelBtn").addEventListener("click", function() {
+    const formData = new FormData(document.getElementById("dataForm"));
+    const data = {
+        User: formData.get("user"),
+        Shift: formData.get("shift"),
+        Date: formData.get("date"),
+        "Extruder No": formData.get("extruder-no"),
+        "Start Time": formData.get("start-time"),
+        "End Time": formData.get("end-time"),
+        "Name Food": formData.get("name-food"),
+        "Code Lot": formData.get("code-lot"),
+        Shape: formData.get("shape"),
+        Size: formData.get("size"),
+        Color: formData.get("color"),
+        "Number Dir": formData.get("number-dir"),
+        "Number of Blades": formData.get("number-blades"),
+        Oil: formData.get("oil"),
+        "Lot color oil": formData.get("lot-color-oil"),
+        "Weight color oil": formData.get("weight-color-oil")
+    };
 
-        const data = [
-            { Name: name, Email: email, Phone: phone }
-        ];
-
-        const ws = XLSX.utils.json_to_sheet(data);
-        const wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
-        const filePath = path.join(__dirname, 'details.xlsx');
-        XLSX.writeFile(wb, filePath);
-
-        preview.innerHTML = '<p>Details saved to Excel.</p>';
-        saveButton.style.display = 'none';
+    fetch('http://127.0.0.1:5000/save_to_excel', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        // เปิดหน้า P3manual.html
+        window.open('P3manual.html', '_blank');
+    })
+    .catch((error) => {
+        console.error('Error:', error);
     });
 });

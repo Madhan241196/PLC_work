@@ -1,15 +1,17 @@
 {
   "name": "electron-form-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "An app to save form data to Excel",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "xlsx": "^0.17.1"
+  },
   "devDependencies": {
-    "electron": "^26.6.10",
-    "xlsx": "^0.18.5"
+    "electron": "^13.1.7"
   }
 }

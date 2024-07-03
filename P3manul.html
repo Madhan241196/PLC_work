@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bluefalo Petcare - Extrude and Dryer Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-size: cover;
+            background-repeat: no-repeat;
+            transition: background-image 1s ease-in-out;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* พื้นหลังสีขาวโปร่งแสง */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px; /* ปรับขนาดความกว้างของคอนเทนเนอร์ */
+            margin: 20px auto; /* จัดกึ่งกลางและระยะห่างด้านบนและล่าง */
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header img {
+            max-height: 70px; /* ปรับขนาดของโลโก้ */
+        }
+        .header h2 {
+            font-size: 1.5em; /* ปรับขนาดของหัวข้อ */
+            margin: 0;
+        }
+        .header h4 {
+            font-size: 1.2em; /* ปรับขนาดของหัวข้อรอง */
+            margin: 0;
+        }
+        form {
+            font-size: 14px;
+        }
+        .form-group label {
+            font-weight: bold;
+            font-size: 0.9em; /* ปรับขนาดฟอนต์ของ label */
+        }
+        .form-control {
+            font-size: 0.9em; /* ปรับขนาดฟอนต์ของ input */
+            padding: 8px;
+        }
+        .btn {
+            font-size: 0.9em; /* ปรับขนาดฟอนต์ของปุ่ม */
+            padding: 8px 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="E:/Python/Report/logo.png" alt="Bluefalo Petcare Logo">
+            <div class="text-center">
+                <h2>บริษัท บลูฟาโล่ เพ็ทแคร์ จำกัด</h2>
+                <h4>บันทึกการทำงานของ Extrude and Dryer</h4>
+            </div>
+            <img src="E:/Python/Report/logo-B&C.png" alt="Bok Dok & Catty Cat Logo">
+        </div>
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="timeSpeedScrewFeeder">Time/Speed Screw Feeder (tons/hr):</label>
+                    <input type="text" class="form-control" id="timeSpeedScrewFeeder">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="feedRate">Feed Rate (kgs/hr):</label>
+                    <input type="text" class="form-control" id="feedRate">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="extLoad">Ext. Load (%):</label>
+                    <input type="text" class="form-control" id="extLoad">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="extruderSpeed">Extruder Speed (rpm):</label>
+                    <input type="text" class="form-control" id="extruderSpeed">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="knifeSpeed">Knife Speed (rpm):</label>
+                    <input type="text" class="form-control" id="knifeSpeed">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="downspoutTemp">Downspout Temp (°C):</label>
+                    <input type="text" class="form-control" id="downspoutTemp">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="tempBarrel1">Temp. Barrel 1 (°C):</label>
+                    <input type="text" class="form-control" id="tempBarrel1">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="tempBarrel2">Temp. Barrel 2 (°C):</label>
+                    <input type="text" class="form-control" id="tempBarrel2">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="tempBarrel3">Temp. Barrel 3 (°C):</label>
+                    <input type="text" class="form-control" id="tempBarrel3">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="preCondSteam">Pre-cond. Steam (kgs/hr):</label>
+                    <input type="text" class="form-control" id="preCondSteam">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="preCondWater">Pre-cond. Water (L/hr):</label>
+                    <input type="text" class="form-control" id="preCondWater">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="colorFlowInCond">Color Flow in Cond. (kgs/hr):</label>
+                    <input type="text" class="form-control" id="colorFlowInCond">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="fatFlowInCond">Fat Flow in Cond. (kgs/min):</label>
+                    <input type="text" class="form-control" id="fatFlowInCond">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="dryerTempZone1">Dryer Temp Zone 1:</label>
+                    <input type="text" class="form-control" id="dryerTempZone1">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="dryerTempZone2">Dryer Temp Zone 2:</label>
+                    <input type="text" class="form-control" id="dryerTempZone2">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="deckNo">Deck No. 1-5:</label>
+                    <input type="text" class="form-control" id="deckNo">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="recirBlow1">Recir. Blow 1:</label>
+                    <input type="text" class="form-control" id="recirBlow1">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="recirBlow2">Recir. Blow 2:</label>
+                    <input type="text" class="form-control" id="recirBlow2">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="capacity">Capacity (kg/hr):</label>
+                    <input type="text" class="form-control" id="capacity">
+                </div>
+            </div>
+            <div class="text-center"> <!-- เพิ่มการจัดกึ่งกลางให้ปุ่ม -->
+                <button type="submit" class="btn btn-primary">Next</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        const images = [
+            "file:///E:/Python/Report/images/B1.jpg",
+            "file:///E:/Python/Report/images/B2.jpg",
+            "file:///E:/Python/Report/images/B3.jpg",
+            "file:///E:/Python/Report/images/B4.jpg",
+            "file:///E:/Python/Report/images/B5.jpg",
+            "file:///E:/Python/Report/images/B6.jpg",
+            "file:///E:/Python/Report/images/B7.jpg",
+            "file:///E:/Python/Report/images/B8.jpg",
+            "file:///E:/Python/Report/images/B9.jpg"
+        ];
+
+        let currentIndex = 0;
+
+        function changeBackground() {
+            document.body.style.backgroundImage = `url(${images[currentIndex]})`;
+            currentIndex = (currentIndex + 1) % images.length;
+        }
+
+        setInterval(changeBackground, 3000);
+        window.onload = changeBackground;
+    </script>
+</body>
+</html>

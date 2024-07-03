@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Form Application</title>
+    <title>Form Application</title> <!-- ชื่อของหน้าเว็บ -->
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
-        form { margin-bottom: 20px; }
-        input, button { padding: 10px; margin: 5px 0; width: 100%; }
-        #preview { border: 1px solid #ccc; padding: 10px; margin-top: 20px; }
-        #save { display: none; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; } <!-- กำหนดสไตล์ของ body ให้ใช้ฟอนต์ Arial, sans-serif, ไม่มีขอบและมี padding 20px -->
+        form { margin-bottom: 20px; } <!-- กำหนด margin-bottom ของ form 20px -->
+        input, button { padding: 10px; margin: 5px 0; width: 100%; } <!-- กำหนดสไตล์สำหรับ input และ button ให้มี padding 10px, margin บน-ล่าง 5px และกว้าง 100% -->
+        #preview { border: 1px solid #ccc; padding: 10px; margin-top: 20px; } <!-- กำหนดสไตล์สำหรับ div ที่มี id preview ให้มี border, padding และ margin-top 20px -->
+        #save { display: none; } <!-- กำหนดให้ปุ่ม save ซ่อนอยู่ (display: none) -->
     </style>
 </head>
 <body>
-    <h1>Fill out your details</h1>
+    <h1>Fill out your details</h1> <!-- หัวข้อของหน้าเว็บ -->
     <form id="form">
-        <input type="text" id="name" placeholder="Name" required>
-        <input type="text" id="email" placeholder="Email" required>
-        <input type="text" id="phone" placeholder="Phone" required>
-        <button type="button" id="previewButton">Preview</button>
+        <input type="text" id="name" placeholder="Name" required> <!-- ฟิลด์สำหรับกรอกชื่อ -->
+        <input type="text" id="email" placeholder="Email" required> <!-- ฟิลด์สำหรับกรอกอีเมล -->
+        <input type="text" id="phone" placeholder="Phone" required> <!-- ฟิลด์สำหรับกรอกเบอร์โทรศัพท์ -->
+        <button type="button" id="previewButton">Preview</button> <!-- ปุ่มสำหรับดูตัวอย่างข้อมูลที่กรอก -->
     </form>
-    <div id="preview"></div>
-    <button type="button" id="save">Save to Excel</button>
+    <div id="preview"></div> <!-- พื้นที่สำหรับแสดงตัวอย่างข้อมูลที่กรอก -->
+    <button type="button" id="save">Save to Excel</button> <!-- ปุ่มสำหรับบันทึกข้อมูลลง Excel -->
 
-    <script src="renderer.js"></script>
+    <script src="renderer.js"></script> <!-- รวมไฟล์ JavaScript ที่ชื่อ renderer.js -->
 </body>
 </html>

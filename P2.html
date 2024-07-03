@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บลูฟาโล่ เพ็ทแคร์ จำกัด</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-size: cover;
+            background-repeat: no-repeat;
+            transition: background-image 1s ease-in-out;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00796b;
+        }
+        .header-left,
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+        .header-left img {
+            max-width: 80px;
+            margin-right: 15px;
+        }
+        .header-center {
+            text-align: center;
+        }
+        .header-right img.bnc-logo {
+            max-width: 125px;
+            margin-left: 15px;
+            vertical-align: middle;
+        }
+        .header-center h1 {
+            margin: 0;
+            font-size: 1.3em;
+            color: #000000;
+        }
+        .header-center h2 {
+            margin: 0;
+            font-size: 1em;
+            color: #00796b;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 6px;
+            font-size: 0.9em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .form-row .form-group {
+            flex: 0 0 48%;
+            margin-bottom: 10px;
+        }
+        .form-actions {
+            text-align: center;
+        }
+        .form-actions button {
+            padding: 8px 16px;
+            font-size: 0.9em;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #00796b;
+            color: white;
+        }
+        .form-actions button:hover {
+            background-color: #005f56;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainContainer">
+        <div class="header">
+            <div class="header-left">
+                <img src="file:///E:/Python/Report/logo.png" alt="BlueFalo Petcare">
+            </div>
+            <div class="header-center">
+                <h1>บริษัท บลูฟาโล่ เพ็ทแคร์ จำกัด</h1>
+                <h2>บันทึกการทำงานของ Extrude and Dryer</h2>
+            </div>
+            <div class="header-right">
+                <img src="file:///E:/Python/Report/logo-B&C.png" alt="B&C Logo" class="bnc-logo">
+            </div>
+        </div>
+        <form id="dataForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="user">User:</label>
+                    <input type="text" id="user" name="user">
+                </div>
+                <div class="form-group">
+                    <label for="shift">Shift:</label>
+                    <select id="shift" name="shift">
+                        <option value="morning">Morning</option>
+                        <option value="afternoon">Afternoon</option>
+                        <option value="night">Night</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date">
+                </div>
+                <div class="form-group">
+                    <label for="extruder-no">Extruder No:</label>
+                    <input type="text" id="extruder-no" name="extruder-no">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="start-time">Start Time:</label>
+                    <input type="time" id="start-time" name="start-time">
+                </div>
+                <div class="form-group">
+                    <label for="end-time">End Time:</label>
+                    <input type="time" id="end-time" name="end-time">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name-food">Name Food:</label>
+                    <input type="text" id="name-food" name="name-food">
+                </div>
+                <div class="form-group">
+                    <label for="code-lot">Code Lot:</label>
+                    <input type="text" id="code-lot" name="code-lot">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="shape">Shape:</label>
+                    <input type="text" id="shape" name="shape">
+                </div>
+                <div class="form-group">
+                    <label for="size">Size:</label>
+                    <input type="text" id="size" name="size">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="color">Color:</label>
+                    <input type="text" id="color" name="color">
+                </div>
+                <div class="form-group">
+                    <label for="number-dir">Number Dir:</label>
+                    <input type="text" id="number-dir" name="number-dir">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="number-blades">Number of Blades:</label>
+                    <input type="text" id="number-blades" name="number-blades">
+                </div>
+                <div class="form-group">
+                    <label for="oil">Oil:</label>
+                    <input type="text" id="oil" name="oil">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="lot-color-oil">Lot color oil:</label>
+                    <input type="text" id="lot-color-oil" name="lot-color-oil">
+                </div>
+                <div class="form-group">
+                    <label for="weight-color-oil">Weight color oil:</label>
+                    <input type="text" id="weight-color-oil" name="weight-color-oil">
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="button" id="saveBtn">Save to Excel</button>
+            </div>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

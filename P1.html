@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 80%;
+            max-width: 400px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8); /* สีพื้นหลังโปร่งใสสำหรับการ์ดล็อกอิน */
+            padding: 20px;
+        }
+        .login-form {
+            width: 100%;
+        }
+        .login-form h2 {
+            margin-bottom: 20px;
+            color: #00796b; /* สีข้อความ */
+            text-align: center;
+        }
+        .input-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: white;
+        }
+        .input-container img {
+            width: 20px;
+            margin-right: 10px;
+        }
+        .input-container input {
+            border: none;
+            outline: none;
+            width: 100%;
+        }
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #00796b; /* สีปุ่ม */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .login-form button:hover {
+            background-color: #004d40; /* สีปุ่มเมื่อโฮเวอร์ */
+        }
+        .info-section {
+            background-color: transparent;
+            color: #00796b; /* สีข้อความในการ์ดข้อมูล */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .info-section img {
+            max-width: 150px; /* ขนาดภาพใหญ่ขึ้น */
+            margin-bottom: 20px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        .modal-content button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #00796b;
+            color: white;
+            cursor: pointer;
+        }
+        .modal-content button:hover {
+            background-color: #004d40;
+        }
+        .modal-content .options {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .modal-content .options div {
+            margin: 0 10px;
+            text-align: left;
+        }
+    </style>
+    <script>
+        const images = [
+            "file:///E:/Python/Report/images/B1.jpg",
+            "file:///E:/Python/Report/images/B2.jpg",
+            "file:///E:/Python/Report/images/B3.jpg",
+            "file:///E:/Python/Report/images/B4.jpg",
+            "file:///E:/Python/Report/images/B5.jpg",
+            "file:///E:/Python/Report/images/B6.jpg",
+            "file:///E:/Python/Report/images/B7.jpg",
+            "file:///E:/Python/Report/images/B8.jpg",
+            "file:///E:/Python/Report/images/B9.jpg"
+        ];
+
+        function changeBackground() {
+            const randomImage = images[Math.floor(Math.random() * images.length)];
+            document.body.style.backgroundImage = `url(${randomImage})`;
+        }
+
+        window.onload = changeBackground;
+        setInterval(changeBackground, 5000); // เปลี่ยนพื้นหลังทุก ๆ 5 วินาที
+
+        function showModal() {
+            const user = document.getElementById('user').value;
+            const password = document.getElementById('password').value;
+
+            if (user === '12345' && password === '12345') {
+                document.getElementById('myModal').style.display = 'block';
+            } else {
+                alert('Invalid User or Password. Please enter "12345" for both fields.');
+            }
+        }
+
+        function hideModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+
+        function showConfirmation() {
+            const manualEntry = document.getElementById('manual').checked;
+            const databaseEntry = document.getElementById('database').checked;
+
+            if (manualEntry) {
+                document.getElementById('myModal').style.display = 'none';
+                document.getElementById('confirmationModal').style.display = 'block';
+            } else if (databaseEntry) {
+                window.location.href = 'P2.html'; // ถ้าเลือก Enter using database จะเปลี่ยนหน้าไปยัง P2.html
+            }
+        }
+
+        function hideConfirmation() {
+            document.getElementById('confirmationModal').style.display = 'none';
+        }
+
+        function confirmManualEntry() {
+            window.location.href = 'P2.html'; // เปลี่ยนหน้าไปยัง P2.html
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="info-section">
+            <img src="file:///E:/Python/Report/logo.png" alt="Logo">
+        </div>
+        <div class="login-form">
+            <h2>Login</h2>
+            <div class="input-container">
+                <img src="file:///E:/Python/Report/username_icon.png" alt="User Icon">
+                <input type="text" id="user" placeholder="Enter your User">
+            </div>
+            <div class="input-container">
+                <img src="file:///E:/Python/Report/password_icon.png" alt="Password Icon">
+                <input type="password" id="password" placeholder="Enter your Password">
+            </div>
+            <button onclick="showModal()">Login</button>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <p>How would you like to enter Report?</p>
+            <div class="options">
+                <div>
+                    <input type="radio" id="manual" name="entry" value="manual">
+                    <label for="manual">Enter manually</label>
+                </div>
+                <div>
+                    <input type="radio" id="database" name="entry" value="database">
+                    <label for="database">Enter using database</label>
+                </div>
+            </div>
+            <div>
+                <button onclick="showConfirmation()">Ok</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <p>Are you sure to enter manually?</p>
+            <div>
+                <button onclick="confirmManualEntry()">Yes</button>
+                <button onclick="hideConfirmation()">No</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
