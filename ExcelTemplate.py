@@ -1,9 +1,10 @@
 import pandas as pd
 import os
 from openpyxl import load_workbook
-from openpyxl.styles import Alignment, Border, Side, Font
+from openpyxl.styles import Alignment, Border, Side, Font, PatternFill
 from openpyxl.drawing.image import Image
 from openpyxl.worksheet.page import PageMargins
+from datetime import datetime
 
 # สร้าง DataFrame โดยไม่มีคอลัมน์ "Name 29"
 data = {
@@ -34,13 +35,12 @@ data = {
     "Name 25": ["ความชื้นสัมพัทธ์"],
     "Name 26": ["ความชื้นหน้าเครื่อง"],
     "Name 27": ["กายภาพและปัญหาที่พบ"],
-
 }
 
 df = pd.DataFrame(data)
 
 # กำหนดที่อยู่และชื่อไฟล์ที่จะบันทึก
-file_path = os.path.expanduser("~/")  # เปลี่ยนเป็นที่อยู่ไดเร็กทอรีที่มีสิทธิ์เขียน
+file_path = os.path.expanduser("~D:/python/dash/my_plc_report_app/plc")  # เปลี่ยนเป็นที่อยู่ไดเร็กทอรีที่มีสิทธิ์เขียน
 file_name = "Extruder1_Report.xlsx"
 excel_file = os.path.join(file_path, file_name)
 
@@ -61,21 +61,21 @@ ws.insert_cols(1)
 ws.merge_cells('A1:A3')
 
 # เพิ่มรูปภาพในเซลล์ A1
-img_path = "E:/Python/Report/logo.png"  # เปลี่ยนเป็นที่อยู่ของรูปภาพ
+img_path = "D:/python/dash/my_plc_report_app/plc/images/logo.png"  # เปลี่ยนเป็นที่อยู่ของรูปภาพ
 img = Image(img_path)
 img.width = 90  # กำหนดความกว้างของรูปภาพ
 img.height = 80  # กำหนดความสูงของรูปภาพ
 img.anchor = 'A1'
 ws.add_image(img)
 
-img_path = "E:/Python/Report/ผู้ตรวจสอบ.png"  # เปลี่ยนเป็นที่อยู่ของรูปภาพ
+img_path = "D:/python/dash/my_plc_report_app/plc/images/ผู้ตรวจสอบ.png"  # เปลี่ยนเป็นที่อยู่ของรูปภาพ
 img = Image(img_path)
 img.width = 150  # กำหนดความกว้างของรูปภาพ
 img.height = 80  # กำหนดความสูงของรูปภาพ
 img.anchor = 'W22'
 ws.add_image(img)
 
-img_path = "E:/Python/Report/ผู้บันทึก.png"  # เปลี่ยนเป็นที่อยู่ของรูปภาพ
+img_path = "D:/python/dash/my_plc_report_app/plc/images/ผู้บันทึก.png"  # เปลี่ยนเป็นที่อยู่ของรูปภาพ
 img = Image(img_path)
 img.width = 150  # กำหนดความกว้างของรูปภาพ
 img.height = 80  # กำหนดความสูงของรูปภาพ
@@ -87,11 +87,45 @@ ws['A1'].alignment = Alignment(horizontal="center", vertical="center")
 # เพิ่มข้อความในเซลล์ B1 และจัดให้กลางช่อง
 ws['B1'] = 'บริษัท บลูฟาโล่ เพ็ทแคร์ จำกัด'
 ws['B1'].alignment = Alignment(horizontal="center", vertical="center")
-ws['B1'].font = Font(name='TH SarabunPSK', size=20, bold=True)  # ตั้งขนาดตัวอักษรเป็น 20, ฟอนต์เป็น TH SarabunPSK และตัวหนา
+ws['B1'].font = Font(name='TH SarabunPSK', size=20, bold=True)  # ตั้งขนาดตัวอักษรเป็น 20, ฟอนต์เป็น TH SarabunPSK และตัวหนา และสีฟอนต์เป็นสีแดง
 
 ws['B2'] = 'บันทึกการทำงานของ Extruder และ Dryer'
 ws['B2'].alignment = Alignment(horizontal="center", vertical="center")
-ws['B2'].font = Font(name='TH SarabunPSK', size=20, bold=True)  # ตั้งขนาดตัวอักษรเป็น 20, ฟอนต์เป็น TH SarabunPSK และตัวหนา
+ws['B2'].font = Font(name='TH SarabunPSK', size=20, bold=True)  # ตั้งขนาดตัวอักษรเป็น 20, ฟอนต์เป็น TH SarabunPSK และตัวหนา และสีฟอนต์เป็นสีแดง
+
+
+ws.merge_cells('B3:D3')
+ws['B3'] = 'User: '
+ws['B3'].alignment = Alignment(horizontal="center", vertical="center")
+ws['B3'].font = Font(name='TH SarabunPSK', size=12, bold=True, color="FF0000")
+
+
+ws.merge_cells('E3:G3')
+ws['E3'] = 'Dynamic Name'
+ws['E3'].alignment = Alignment(horizontal="center", vertical="center")
+ws['E3'].font = Font(name='TH SarabunPSK', size=12, bold=True, color="FF0120")
+
+
+ws.merge_cells('K3:M3')
+ws['K3'] = 'Date: '
+ws['K3'].alignment = Alignment(horizontal="center", vertical="center")
+ws['K3'].font = Font(name='TH SarabunPSK', size=12, bold=True, color="FF0000")
+
+ws.merge_cells('U3:W3')
+ws['U3'] = 'Shift: '
+ws['U3'].alignment = Alignment(horizontal="center", vertical="center")
+ws['U3'].font = Font(name='TH SarabunPSK', size=12, bold=True, color="FF0000")
+
+ws.merge_cells('N3:Q3')
+ws['N3'] = datetime.today().strftime('%Y-%m-%d')  # วันที่จริงเมื่อสร้างรายงาน
+ws['N3'].alignment = Alignment(horizontal="center", vertical="center")
+ws['N3'].font = Font(name='TH SarabunPSK', size=12, bold=True, color="FF0000")
+
+ws.merge_cells('X3:AB3')
+ws['X3'] = '8:00-16:30'  # ปรับเปลี่ยนช่วงเวลาตามที่ต้องการ
+ws['X3'].alignment = Alignment(horizontal="center", vertical="center")
+ws['X3'].font = Font(name='TH SarabunPSK', size=12, bold=True, color="FF0120")
+
 
 ws['A6'] = 'Timestamp:'
 ws['A6'].alignment = Alignment(horizontal="left", vertical="center")
@@ -142,8 +176,8 @@ ws['A17'].alignment = Alignment(horizontal="left", vertical="center")
 ws['A17'].font = Font(name='TH SarabunPSK', size=10, bold=True)
 
 # รวมเซลล์ B1 ถึง X1 และ B2 ถึง X2
-ws.merge_cells('B1:X1')
-ws.merge_cells('B2:X2')
+ws.merge_cells('B1:AB1')
+ws.merge_cells('B2:AB2')
 ws.merge_cells('A4:A5')
 
 # เพิ่มการรวมเซลล์สำหรับหัวตาราง
@@ -151,12 +185,16 @@ ws.merge_cells('B4:P4')
 ws.merge_cells('Q4:R4')
 ws.merge_cells('T4:U4')
 ws.merge_cells('W4:AB4')
+ws.merge_cells('AB6:AB19')
 
 # ตั้งค่าฟอนต์และการจัดแนวสำหรับหัวตาราง
+header_fill = PatternFill(start_color="FFFF00", end_color="FFFF00", fill_type="solid")  # สีเหลือง
+
 for col in range(2, len(data) + 1):
     cell = ws.cell(row=4, column=col)
-    cell.font = Font(name='TH SarabunPSK', size=10, bold=True)
+    cell.font = Font(name='TH SarabunPSK', size=10, bold=True, color="FF0000")
     cell.alignment = Alignment(horizontal="center", vertical="center")
+ 
 
 # จัดแนวข้อความในเซลล์ในช่วงที่กำหนดและหมุนข้อความในแนวตั้ง
 for row in ws.iter_rows(min_row=5, max_row=len(df) + 4, min_col=2, max_col=len(df.columns) + 1):
@@ -232,7 +270,5 @@ for row in ws.iter_rows(min_row=6, max_row=19, min_col=1, max_col=28):  # A=1, B
         cell.border = thin_border
         cell.font = Font(name='TH SarabunPSK', size=10, bold=True)  # ตั้งฟอนต์เป็น TH SarabunPSK ขนาด 10 และตัวหนา
 
-
 # บันทึกการเปลี่ยนแปลงในไฟล์ Excel
 wb.save(excel_file)
-
