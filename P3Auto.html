@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bluefalo Petcare</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-container, .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-header h2 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+        .form-header h4 {
+            font-size: 1.2rem;
+            color: #00796b;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 10px 0 0;
+        }
+        .form-header .logo-left, .form-header .logo-right {
+            height: 80px;
+        }
+        .form-group label {
+            font-weight: bold;
+            color: #555;
+        }
+        .form-control {
+            border-radius: 5px;
+        }
+        .btn-primary {
+            background-color: #00796b;
+            border-color: #00796b;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+        }
+        .login-form h2, .header-center h1, .header-center h2 {
+            color: #00796b;
+        }
+        .login-form {
+            width: 100%;
+        }
+        .login-form h2 {
+            text-align: center;
+        }
+        .input-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: white;
+        }
+        .input-container img {
+            width: 20px;
+            margin-right: 10px;
+        }
+        .input-container input {
+            border: none;
+            outline: none;
+            width: 100%;
+        }
+        .login-form button, .form-actions button, .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .login-form button:hover, .form-actions button:hover, .btn:hover {
+            background-color: #004d40;
+        }
+        .info-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .info-section img {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        .modal-content button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #00796b;
+            color: white;
+            cursor: pointer;
+        }
+        .modal-content button:hover {
+            background-color: #004d40;
+        }
+        .modal-content .options {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .modal-content .options div {
+            margin: 0 10px;
+            text-align: left;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00796b;
+        }
+        .header-left img, .header-right img {
+            max-height: 70px;
+        }
+        .header-center {
+            text-align: center;
+        }
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .form-row .form-group {
+            flex: 0 0 48%;
+        }
+    </style>
+    <script>
+        const images = [
+            "file:///E:/Python/Report/images/B1.jpg",
+            "file:///E:/Python/Report/images/B2.jpg",
+            "file:///E:/Python/Report/images/B3.jpg",
+            "file:///E:/Python/Report/images/B4.jpg",
+            "file:///E:/Python/Report/images/B5.jpg",
+            "file:///E:/Python/Report/images/B6.jpg",
+            "file:///E:/Python/Report/images/B7.jpg",
+            "file:///E:/Python/Report/images/B8.jpg",
+            "file:///E:/Python/Report/images/B9.jpg"
+        ];
+
+        let currentIndex = 0;
+
+        function changeBackgroundImage() {
+            document.body.style.backgroundImage = `url(${images[currentIndex]})`;
+            currentIndex = (currentIndex + 1) % images.length;
+        }
+
+        setInterval(changeBackgroundImage, 3000);
+        window.onload = changeBackgroundImage;
+
+        function showModal() {
+            const user = document.getElementById('user').value;
+            const password = document.getElementById('password').value;
+
+            if (user === '12345' && password === '12345') {
+                document.getElementById('myModal').style.display = 'block';
+            } else {
+                alert('Invalid User or Password. Please enter "12345" for both fields.');
+            }
+        }
+
+        function hideModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+
+        function showConfirmation() {
+            const manualEntry = document.getElementById('manual').checked;
+            const databaseEntry = document.getElementById('database').checked;
+
+            if (manualEntry) {
+                document.getElementById('myModal').style.display = 'none';
+                document.getElementById('confirmationModal').style.display = 'block';
+            } else if (databaseEntry) {
+                window.location.href = '#'; // Redirect to the relevant section
+            }
+        }
+
+        function hideConfirmation() {
+            document.getElementById('confirmationModal').style.display = 'none';
+        }
+
+        function confirmManualEntry() {
+            window.location.href = '#'; // Redirect to the relevant section
+        }
+    </script>
+</head>
+<body>
+    <!-- Login Section -->
+    <div class="container">
+        <div class="info-section">
+            <img src="file:///E:/Python/Report/logo.png" alt="Logo">
+        </div>
+        <div class="login-form">
+            <h2>Login</h2>
+            <div class="input-container">
+                <img src="file:///E:/Python/Report/username_icon.png" alt="User Icon">
+                <input type="text" id="user" placeholder="Enter your User">
+            </div>
+            <div class="input-container">
+                <img src="file:///E:/Python/Report/password_icon.png" alt="Password Icon">
+                <input type="password" id="password" placeholder="Enter your Password">
+            </div>
+            <button onclick="showModal()">Login</button>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <p>How would you like to enter Report?</p>
+            <div class="options">
+                <div>
+                    <input type="radio" id="manual" name="entry" value="manual">
+                    <label for="manual">Enter manually</label>
+                </div>
+                <div>
+                    <input type="radio" id="database" name="entry" value="database">
+                    <label for="database">Enter using database</label>
+                </div>
+            </div>
+            <div>
+                <button onclick="showConfirmation()">Ok</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <p>Are you sure to enter manually?</p>
+            <div>
+                <button onclick="confirmManualEntry()">Yes</button>
+                <button onclick="hideConfirmation()">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form Sections -->
+    <div class="container form-container">
+        <div class="form-header">
+            <img src="E:/Python/Report/logo.png" alt="Logo" class="logo-left">
+            <div>
+                <h2>บริษัท บลูฟาโล่ เพ็ทแคร์ จำกัด</h2>
+                <h4>บันทึกการทำงานของ Extrude and Dryer</h4>
+            </div>
+            <img src="E:/Python/Report/logo-B&C.png" alt="Logo B&C" class="logo-right">
+        </div>
+        <form>
+            <!-- New fields only -->
+            <div class="form-group row">
+                <label for="streamHeader" class="col-sm-4 col-form-label">Stream Header (bar):</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="streamHeader">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="moistureDyer" class="col-sm-4 col-form-label">ความชื้น Dyer:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="moistureDyer">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="moistureCooler" class="col-sm-4 col-form-label">ความชื้น Cooler:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="moistureCooler">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="roomTemperature" class="col-sm-4 col-form-label">อุณหภูมิห้อง:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="roomTemperature">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="relativeHumidity" class="col-sm-4 col-form-label">ความชื้นสัมพัทธ์:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="relativeHumidity">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="machineMoisture" class="col-sm-4 col-form-label">ความชื้นหน้าเครื่อง:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="machineMoisture">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="physicalIssues" class="col-sm-4 col-form-label">กายภาพและปัญหาที่พบ:</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" id="physicalIssues" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="remarks" class="col-sm-4 col-form-label">หมายเหตุ:</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" id="remarks" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-12 text-right">
+                    <button type="submit" class="btn btn-primary">Preview</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="header-left">
+                <img src="file:///E:/Python/Report/logo.png" alt="BlueFalo Petcare">
+            </div>
+            <div class="header-center">
+                <h1>บริษัท บลูฟาโล่ เพ็ทแคร์ จำกัด</h1>
+                <h2>บันทึกการทำงานของ Extrude and Dryer</h2>
+            </div>
+            <div class="header-right">
+                <img src="file:///E:/Python/Report/logo-B&C.png" alt="B&C Logo" class="bnc-logo">
+            </div>
+        </div>
+        <form id="dataForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="user">User:</label>
+                    <input type="text" id="user" name="user">
+                </div>
+                <div class="form-group">
+                    <label for="shift">Shift:</label>
+                    <select id="shift" name="shift">
+                        <option value="morning">Morning</option>
+                        <option value="afternoon">Afternoon</option>
+                        <option value="night">Night</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date">
+                </div>
+                <div class="form-group">
+                    <label for="extruder-no">Extruder No:</label>
+                    <input type="text" id="extruder-no" name="extruder-no">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="start-time">Start Time:</label>
+                    <input type="time" id="start-time" name="start-time">
+                </div>
+                <div class="form-group">
+                    <label for="end-time">End Time:</label>
+                    <input type="time" id="end-time" name="end-time">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name-food">Name Food:</label>
+                    <input type="text" id="name-food" name="name-food">
+                </div>
+                <div class="form-group">
+                    <label for="code-lot">Code Lot:</label>
+                    <input type="text" id="code-lot" name="code-lot">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="shape">Shape:</label>
+                    <input type="text" id="shape" name="shape">
+                </div>
+                <div class="form-group">
+                    <label for="size">Size:</label>
+                    <input type="text" id="size" name="size">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="color">Color:</label>
+                    <input type="text" id="color" name="color">
+                </div>
+                <div class="form-group">
+                    <label for="number-dir">Number Dir:</label>
+                    <input type="text" id="number-dir" name="number-dir">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="number-blades">Number of Blades:</label>
+                    <input type="text" id="number-blades" name="number-blades">
+                </div>
+                <div class="form-group">
+                    <label for="oil">Oil:</label>
+                    <input type="text" id="oil" name="oil">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="lot-color-oil">Lot color oil:</label>
+                    <input type="text" id="lot-color-oil" name="lot-color-oil">
+                </div>
+                <div class="form-group">
+                    <label for="weight-color-oil">Weight color oil:</label>
+                    <input type="text" id="weight-color-oil" name="weight-color-oil">
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="button" id="saveBtn">Save to Excel</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <img src="E:/Python/Report/logo.png" alt="Bluefalo Petcare Logo">
+            <div class="text-center">
+                <h2>บริษัท บลูฟาโล่ เพ็ทแคร์ จำกัด</h2>
+                <h4>บันทึกการทำงานของ Extrude and Dryer</h4>
+            </div>
+            <img src="E:/Python/Report/logo-B&C.png" alt="Bok Dok & Catty Cat Logo">
+        </div>
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="timeSpeedScrewFeeder">Time/Speed Screw Feeder (tons/hr):</label>
+                    <input type="text" class="form-control" id="timeSpeedScrewFeeder">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="feedRate">Feed Rate (kgs/hr):</label>
+                    <input type="text" class="form-control" id="feedRate">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="extLoad">Ext. Load (%):</label>
+                    <input type="text" class="form-control" id="extLoad">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="extruderSpeed">Extruder Speed (rpm):</label>
+                    <input type="text" class="form-control" id="extruderSpeed">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="knifeSpeed">Knife Speed (rpm):</label>
+                    <input type="text" class="form-control" id="knifeSpeed">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="downspoutTemp">Downspout Temp (°C):</label>
+                    <input type="text" class="form-control" id="downspoutTemp">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="tempBarrel1">Temp. Barrel 1 (°C):</label>
+                    <input type="text" class="form-control" id="tempBarrel1">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="tempBarrel2">Temp. Barrel 2 (°C):</label>
+                    <input type="text" class="form-control" id="tempBarrel2">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="tempBarrel3">Temp. Barrel 3 (°C):</label>
+                    <input type="text" class="form-control" id="tempBarrel3">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="preCondSteam">Pre-cond. Steam (kgs/hr):</label>
+                    <input type="text" class="form-control" id="preCondSteam">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="preCondWater">Pre-cond. Water (L/hr):</label>
+                    <input type="text" class="form-control" id="preCondWater">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="colorFlowInCond">Color Flow in Cond. (kgs/hr):</label>
+                    <input type="text" class="form-control" id="colorFlowInCond">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="fatFlowInCond">Fat Flow in Cond. (kgs/min):</label>
+                    <input type="text" class="form-control" id="fatFlowInCond">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="dryerTempZone1">Dryer Temp Zone 1:</label>
+                    <input type="text" class="form-control" id="dryerTempZone1">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="dryerTempZone2">Dryer Temp Zone 2:</label>
+                    <input type="text" class="form-control" id="dryerTempZone2">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="deckNo">Deck No. 1-5:</label>
+                    <input type="text" class="form-control" id="deckNo">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="recirBlow1">Recir. Blow 1:</label>
+                    <input type="text" class="form-control" id="recirBlow1">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="recirBlow2">Recir. Blow 2:</label>
+                    <input type="text" class="form-control" id="recirBlow2">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="capacity">Capacity (kg/hr):</label>
+                    <input type="text" class="form-control" id="capacity">
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Next</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

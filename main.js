@@ -17,7 +17,7 @@ function createWindow() {
     });
 
     // โหลดไฟล์ HTML ที่จะใช้แสดงในหน้าต่างหลัก
-    mainWindow.loadFile('P2.html');
+    mainWindow.loadFile('P3Auto.html');
 }
 
 // เมื่อแอปพร้อมทำงาน ให้สร้างหน้าต่างหลัก
