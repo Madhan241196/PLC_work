@@ -1,128 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>บลูฟาโล่ เพ็ทแคร์ จำกัด</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=TH+Sarabun+PSK&display=swap');
+
         body {
+            font-family: 'TH Sarabun PSK', sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
+            transition: background-image 1s ease-in-out;
             background-size: cover;
-            background-position: center;
             background-repeat: no-repeat;
+            background-position: center;
         }
         .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 80%;
-            max-width: 400px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.8); /* สีพื้นหลังโปร่งใสสำหรับการ์ดล็อกอิน */
+            width: 90%;
+            max-width: 600px;
             padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.8); /* เพิ่มความโปร่งใส */
         }
-        .login-form {
-            width: 100%;
-        }
-        .login-form h2 {
-            margin-bottom: 20px;
-            color: #00796b; /* สีข้อความ */
+        h1, h2 {
             text-align: center;
+            margin: 10px 0;
+            font-family: 'TH Sarabun PSK', sans-serif;
+            font-weight: bold;
         }
-        .input-container {
+        .logo-container {
             display: flex;
+            justify-content: center;
             align-items: center;
-            margin-bottom: 15px;
+        }
+        .logo-container img {
+            margin: 0 10px; /* เพิ่มระยะห่างระหว่างภาพ */
+            width: 100px; /* ปรับขนาดภาพตามต้องการ */
+        }
+        h2 {
+            color: red; /* สีแดง */
+        }
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #555;
+        }
+        input[type="text"], input[type="date"], input[type="time"], select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            padding: 10px;
-            background-color: white;
+            box-sizing: border-box;
         }
-        .input-container img {
-            width: 20px;
-            margin-right: 10px;
+        .full-width {
+            grid-column: span 2;
         }
-        .input-container input {
-            border: none;
-            outline: none;
-            width: 100%;
-        }
-        .login-form button {
-            width: 100%;
-            padding: 10px;
-            background-color: #00796b; /* สีปุ่ม */
-            color: white;
+        input[type="submit"] {
+            grid-column: span 2;
+            padding: 15px;
+            margin-top: 20px;
             border: none;
             border-radius: 5px;
-            font-size: 1em;
-        }
-        .login-form button:hover {
-            background-color: #004d40; /* สีปุ่มเมื่อโฮเวอร์ */
-        }
-        .info-section {
-            background-color: transparent;
-            color: #00796b; /* สีข้อความในการ์ดข้อมูล */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-        .info-section img {
-            max-width: 150px; /* ขนาดภาพใหญ่ขึ้น */
-            margin-bottom: 20px;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 400px;
-            text-align: center;
-            border-radius: 10px;
-        }
-        .modal-content button {
-            padding: 10px 20px;
-            margin: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #00796b;
+            background-color: #4CAF50; /* สีเขียว */
             color: white;
+            font-size: 18px;
             cursor: pointer;
         }
-        .modal-content button:hover {
-            background-color: #004d40;
-        }
-        .modal-content .options {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .modal-content .options div {
-            margin: 0 10px;
-            text-align: left;
+        input[type="submit"]:hover {
+            background-color: #45a049; /* สีเขียวเข้มเมื่อ hover */
         }
     </style>
+    <script>
+        function validateInput(event) {
+            const input = event.target;
+            const pattern = /^[A-Za-zก-ฮะ-์]+$/;
+            if (!pattern.test(input.value)) {
+                input.setCustomValidity('กรุณากรอกตัวอักษรเท่านั้น (ห้ามมีตัวเลข)');
+            } else {
+                input.setCustomValidity('');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="E:/Python/Report/logo-BokDok.png" alt="Logo BokDok">
+            <img src="E:/Python/Report/logo.png" alt="Logo">
+            <img src="E:/Python/Report/logo-CattyCat.png" alt="Logo CattyCat">
+        </div>
+        <h1>𝐁𝐥𝐮𝐞𝐟𝐚𝐥𝐨 𝐏𝐞𝐭𝐜𝐚𝐫𝐞 𝐂𝐨., 𝐋𝐭𝐝.</h1>
+        <h2>𝐄𝐱𝐭𝐫𝐮𝐝𝐞 𝐚𝐧𝐝 𝐃𝐫𝐲𝐞𝐫 𝐖𝐨𝐫𝐤𝐢𝐧𝐠 𝐑𝐞𝐜𝐨𝐫𝐝</h2>
+        <form action="submit_form.php" method="post">
+            <div>
+                <label for="user">𝐔𝐬𝐞𝐫:</label>
+                <input type="text" id="user" name="user" pattern="[A-Za-zก-ฮะ-์]+" title="กรุณากรอกตัวอักษรเท่านั้น (ห้ามมีตัวเลข)" oninput="validateInput(event)">
+            </div>
+            <div>
+                <label for="shift">𝐒𝐡𝐢𝐟𝐭:</label>
+                <select id="shift" name="shift">
+                    <option value="morning">เช้า: 08:30-16:30 น.</option>
+                    <option value="evening">เย็น: 16:00-00:30 น.</option>
+                    <option value="night">กลางคืน: 00:00-08:30 น.</option>
+                </select>
+            </div>
+            <div class="full-width">
+                <label for="date">𝐃𝐚𝐭𝐞:</label>
+                <input type="date" id="date" name="date">
+            </div>
+            <div>
+                <label for="start_time">𝐒𝐭𝐚𝐫𝐭 𝐓𝐢𝐦𝐞:</label>
+                <input type="time" id="start_time" name="start_time">
+            </div>
+            <div>
+                <label for="end_time">𝐄𝐧𝐝 𝐓𝐢𝐦𝐞:</label>
+                <input type="time" id="end_time" name="end_time">
+            </div>
+            <input type="submit" value="Next">
+        </form>
+    </div>
+
     <script>
         const images = [
             "file:///E:/Python/Report/images/B1.jpg",
@@ -136,98 +147,17 @@
             "file:///E:/Python/Report/images/B9.jpg"
         ];
 
-        function changeBackground() {
-            const randomImage = images[Math.floor(Math.random() * images.length)];
-            document.body.style.backgroundImage = `url(${randomImage})`;
+        let currentIndex = 0;
+
+        function changeBackgroundImage() {
+            document.body.style.backgroundImage = `url(${images[currentIndex]})`;
+            currentIndex = (currentIndex + 1) % images.length;
         }
 
-        window.onload = changeBackground;
-        setInterval(changeBackground, 5000); // เปลี่ยนพื้นหลังทุก ๆ 5 วินาที
+        setInterval(changeBackgroundImage, 3000); // เปลี่ยนภาพทุก ๆ 3 วินาที
 
-        function showModal() {
-            const user = document.getElementById('user').value;
-            const password = document.getElementById('password').value;
-
-            if (user === '12345' && password === '12345') {
-                document.getElementById('myModal').style.display = 'block';
-            } else {
-                alert('Invalid User or Password. Please enter "12345" for both fields.');
-            }
-        }
-
-        function hideModal() {
-            document.getElementById('myModal').style.display = 'none';
-        }
-
-        function showConfirmation() {
-            const manualEntry = document.getElementById('manual').checked;
-            const databaseEntry = document.getElementById('database').checked;
-
-            if (manualEntry) {
-                document.getElementById('myModal').style.display = 'none';
-                document.getElementById('confirmationModal').style.display = 'block';
-            } else if (databaseEntry) {
-                window.location.href = 'P2.html'; // ถ้าเลือก Enter using database จะเปลี่ยนหน้าไปยัง P2.html
-            }
-        }
-
-        function hideConfirmation() {
-            document.getElementById('confirmationModal').style.display = 'none';
-        }
-
-        function confirmManualEntry() {
-            window.location.href = 'P2.html'; // เปลี่ยนหน้าไปยัง P2.html
-        }
+        // เริ่มต้นด้วยการเรียกฟังก์ชันเปลี่ยนภาพครั้งแรก
+        changeBackgroundImage();
     </script>
-</head>
-<body>
-    <div class="container">
-        <div class="info-section">
-            <img src="file:///E:/Python/Report/logo.png" alt="Logo">
-        </div>
-        <div class="login-form">
-            <h2>Login</h2>
-            <div class="input-container">
-                <img src="file:///E:/Python/Report/username_icon.png" alt="User Icon">
-                <input type="text" id="user" placeholder="Enter your User">
-            </div>
-            <div class="input-container">
-                <img src="file:///E:/Python/Report/password_icon.png" alt="Password Icon">
-                <input type="password" id="password" placeholder="Enter your Password">
-            </div>
-            <button onclick="showModal()">Login</button>
-        </div>
-    </div>
-
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <p>How would you like to enter Report?</p>
-            <div class="options">
-                <div>
-                    <input type="radio" id="manual" name="entry" value="manual">
-                    <label for="manual">Enter manually</label>
-                </div>
-                <div>
-                    <input type="radio" id="database" name="entry" value="database">
-                    <label for="database">Enter using database</label>
-                </div>
-            </div>
-            <div>
-                <button onclick="showConfirmation()">Ok</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Confirmation Modal -->
-    <div id="confirmationModal" class="modal">
-        <div class="modal-content">
-            <p>Are you sure to enter manually?</p>
-            <div>
-                <button onclick="confirmManualEntry()">Yes</button>
-                <button onclick="hideConfirmation()">No</button>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
