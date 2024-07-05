@@ -20,7 +20,7 @@
             width: 90%;
             max-width: 800px;
             padding: 20px;
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.8); /* ปรับสีพื้นหลังเป็นโปร่งใส */
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -37,27 +37,41 @@
             display: flex;
             align-items: center;
         }
+        .header-left img,
+        .header-right img {
+            margin: 0 10px;
+        }
         .header-left img {
             max-width: 80px;
-            margin-right: 15px;
+        }
+        .header-right img {
+            max-width: 150px; /* เพิ่มขนาดโลโก้ B&C */
         }
         .header-center {
             text-align: center;
-        }
-        .header-right img.bnc-logo {
-            max-width: 125px;
-            margin-left: 15px;
-            vertical-align: middle;
+            flex-grow: 1;
         }
         .header-center h1 {
-            margin: 0;
-            font-size: 1.3em;
-            color: #000000;
+            margin: 5px 0;
+            font-size: 1.5em;
         }
-        .header-center h2 {
-            margin: 0;
+        .header-center h1 .black {
+            color: #000000; /* เปลี่ยนสีของคำว่า BlueFalo เป็นสีดำ */
+        }
+        .header-center h1 .red {
+            background: linear-gradient(to right, #d32f2f, #b71c1c);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .header-info {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .header-info div {
             font-size: 1em;
-            color: #00796b;
+            font-weight: bold;
+            color: #000000;
         }
         .form-group {
             margin-bottom: 10px;
@@ -87,17 +101,17 @@
             text-align: center;
         }
         .form-actions button {
-            padding: 8px 16px;
-            font-size: 0.9em;
+            padding: 12px 20px;
+            font-size: 1em;
             margin: 5px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            background-color: #00796b;
+            background-color: #4CAF50; /* สีเขียวตามภาพ */
             color: white;
         }
         .form-actions button:hover {
-            background-color: #005f56;
+            background-color: #45a049; /* สีเขียวเข้มขึ้นเมื่อ hover */
         }
     </style>
 </head>
@@ -105,107 +119,129 @@
     <div class="container" id="mainContainer">
         <div class="header">
             <div class="header-left">
-                <img src="file:///E:/Python/Report/logo.png" alt="BlueFalo Petcare">
+                <img src="file:///D:/Python/report/images/logo.png" alt="BlueFalo Petcare">
             </div>
             <div class="header-center">
-                <h1>บริษัท บลูฟาโล่ เพ็ทแคร์ จำกัด</h1>
-                <h2>บันทึกการทำงานของ Extrude and Dryer</h2>
+                <h1><span class="black">BlueFalo</span> <span class="red">Petcare</span></h1>
+                <div class="header-info">
+                    <div id="statusUser">User: Example User</div>
+                    <div id="statusShift">Shift: เช้า</div>
+                    <div id="statusDate">Date: 5 กรกฎาคม 2567</div>
+                </div>
             </div>
             <div class="header-right">
-                <img src="file:///E:/Python/Report/logo-B&C.png" alt="B&C Logo" class="bnc-logo">
+                <img src="file:///D:/Python/report/images/logo-B&C.png" alt="B&C Logo">
             </div>
         </div>
         <form id="dataForm">
             <div class="form-row">
                 <div class="form-group">
-                    <label for="user">User:</label>
-                    <input type="text" id="user" name="user">
-                </div>
-                <div class="form-group">
-                    <label for="shift">Shift:</label>
-                    <select id="shift" name="shift">
-                        <option value="morning">Morning</option>
-                        <option value="afternoon">Afternoon</option>
-                        <option value="night">Night</option>
+                    <label for="extruder-no">Extruder No:</label>
+                    <select id="extruder-no" name="extruder-no">
+                        <option value="extruder-1">Extruder No.1</option>
+                        <option value="extruder-2">Extruder No.2</option>
+                        <option value="extruder-3">Extruder No.3</option>
                     </select>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="date">Date:</label>
-                    <input type="date" id="date" name="date">
-                </div>
-                <div class="form-group">
-                    <label for="extruder-no">Extruder No:</label>
-                    <input type="text" id="extruder-no" name="extruder-no">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="start-time">Start Time:</label>
-                    <input type="time" id="start-time" name="start-time">
-                </div>
-                <div class="form-group">
-                    <label for="end-time">End Time:</label>
-                    <input type="time" id="end-time" name="end-time">
-                </div>
-            </div>
-            <div class="form-row">
                 <div class="form-group">
                     <label for="name-food">Name Food:</label>
                     <input type="text" id="name-food" name="name-food">
                 </div>
+            </div>
+            <div class="form-row">
                 <div class="form-group">
                     <label for="code-lot">Code Lot:</label>
                     <input type="text" id="code-lot" name="code-lot">
                 </div>
-            </div>
-            <div class="form-row">
                 <div class="form-group">
                     <label for="shape">Shape:</label>
                     <input type="text" id="shape" name="shape">
                 </div>
+            </div>
+            <div class="form-row">
                 <div class="form-group">
                     <label for="size">Size:</label>
                     <input type="text" id="size" name="size">
                 </div>
-            </div>
-            <div class="form-row">
                 <div class="form-group">
                     <label for="color">Color:</label>
                     <input type="text" id="color" name="color">
                 </div>
+            </div>
+            <div class="form-row">
                 <div class="form-group">
                     <label for="number-dir">Number Dir:</label>
                     <input type="text" id="number-dir" name="number-dir">
                 </div>
-            </div>
-            <div class="form-row">
                 <div class="form-group">
                     <label for="number-blades">Number of Blades:</label>
                     <input type="text" id="number-blades" name="number-blades">
                 </div>
+            </div>
+            <div class="form-row">
                 <div class="form-group">
                     <label for="oil">Oil:</label>
                     <input type="text" id="oil" name="oil">
                 </div>
-            </div>
-            <div class="form-row">
                 <div class="form-group">
                     <label for="lot-color-oil">Lot color oil:</label>
                     <input type="text" id="lot-color-oil" name="lot-color-oil">
                 </div>
+            </div>
+            <div class="form-row">
                 <div class="form-group">
                     <label for="weight-color-oil">Weight color oil:</label>
                     <input type="text" id="weight-color-oil" name="weight-color-oil">
                 </div>
             </div>
             <div class="form-actions">
-                <button type="button" id="saveBtn">Save to Excel</button>
+                <button type="button" id="nextBtn">Next</button>
             </div>
         </form>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
+    <script>
+        const images = [
+            "D:/Python/report/images/B1.jpg",
+            "D:/Python/report/images/B2.jpg",
+            "D:/Python/report/images/B3.jpg",
+            "D:/Python/report/images/B4.jpg",
+            "D:/Python/report/images/B5.jpg",
+            "D:/Python/report/images/B6.jpg",
+            "D:/Python/report/images/B7.jpg",
+            "D:/Python/report/images/B8.jpg",
+            "D:/Python/report/images/B9.jpg",
+            "D:/Python/report/images/B10.jpg"
+        ];
+        let currentImageIndex = 0;
+
+        function changeBackgroundImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            document.body.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+        }
+
+        setInterval(changeBackgroundImage, 3000);
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.body.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+            const statusDate = document.getElementById('statusDate');
+            const currentDate = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            statusDate.innerText = `Date: ${currentDate.toLocaleDateString('th-TH', options)}`;
+            
+            const statusShift = document.getElementById('statusShift');
+            const statusUser = document.getElementById('statusUser');
+            
+            // ฟังก์ชันเพื่อปรับปรุงค่า User และ Shift จากไฟล์อื่น
+            function updateHeader(user, shift) {
+                statusUser.innerText = `User: ${user}`;
+                statusShift.innerText = `Shift: ${shift}`;
+            }
+            
+            // ตัวอย่างการตั้งค่า (สามารถเปลี่ยนได้จากไฟล์อื่น)
+            updateHeader("Example User", "เช้า");
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
