@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bluefalo Petcare</title>
+    <title>𝐁𝐥𝐮𝐞𝐟𝐚𝐥𝐨 𝐏𝐞𝐭𝐜𝐚𝐫𝐞</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -31,20 +31,27 @@
             align-items: center;
             padding: 0 20px; /* Adjust padding to move logos slightly towards the center */
         }
+        .form-header .center-content {
+            text-align: center;
+            flex: 1;
+        }
         .form-header h2 {
             font-size: 1.5rem;
             color: #333;
-            margin: 0 10px;
-            flex: 1;
+            margin: 10px 0;
         }
-        .form-header h4 {
+        .form-header .info-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-size: 1.2rem;
             color: #00796b;
             padding: 5px 10px;
             border-radius: 5px;
             margin: 10px 0 0;
-            flex: 1;
-            text-align: center;
+        }
+        .info-content div {
+            margin: 0 15px;
         }
         .form-header .logo-left {
             height: 80px;
@@ -69,6 +76,7 @@
             padding: 10px 20px;
             font-size: 1rem;
             color: white; /* Ensure the text color is white */
+            margin: 5px;
         }
         .form-row {
             display: flex;
@@ -83,8 +91,14 @@
         }
         .form-footer {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
+        }
+        .black-text {
+            color: black;
+        }
+        .red-text {
+            color: red;
         }
     </style>
 </head>
@@ -92,70 +106,74 @@
     <div class="container form-container">
         <div class="form-header">
             <div class="header-content">
-                <img src="E:\Python\Report\logo.png" alt="Logo" class="logo-left">
-                <div>
-                    <h2>บริษัท บลูฟาโล่ เพ็ทแคร์ จำกัด</h2>
-                    <h4>บันทึกการทำงานของ Extrude and Dryer</h4>
+                <img src="D:\Python\Report\logo.png" alt="Logo" class="logo-left">
+                <div class="center-content">
+                    <h2><span class="black-text">𝐁𝐥𝐮𝐞𝐟𝐚𝐥𝐨</span> <span class="red-text">𝐏𝐞𝐭𝐜𝐚𝐫𝐞</span></h2>
+                    <div class="info-content">
+                        <div>User: <span id="user">𝐉𝐨𝐡𝐧 𝐃𝐨𝐞</span></div>
+                        <div>Shift: <span id="shift">𝐌𝐨𝐫𝐧𝐢𝐧𝐠</span></div>
+                        <div>Date: <span id="date">𝟐𝟎𝟐𝟒-𝟎𝟕-𝟎𝟓</span></div>
+                    </div>
                 </div>
-                <img src="E:\Python\Report\logo-B&C.png" alt="Logo B&C" class="logo-right">
+                <img src="D:\Python\Report\logo-B&C.png" alt="Logo B&C" class="logo-right">
             </div>
         </div>
         <form>
             <div class="form-row">
                 <div class="form-group">
-                    <label for="streamHeader">Stream Header (bar):</label>
+                    <label for="streamHeader">𝐒𝐭𝐫𝐞𝐚𝐦 𝐇𝐞𝐚𝐝𝐞𝐫 (𝐛𝐚𝐫):</label>
                     <input type="text" class="form-control" id="streamHeader">
                 </div>
                 <div class="form-group">
-                    <label for="moistureDyer">ความชื้น Dyer:</label>
+                    <label for="moistureDyer">𝐌𝐨𝐢𝐬𝐭𝐮𝐫𝐞 𝐃𝐲𝐞𝐫:</label>
                     <input type="text" class="form-control" id="moistureDyer">
                 </div>
                 <div class="form-group">
-                    <label for="moistureCooler">ความชื้น Cooler:</label>
+                    <label for="moistureCooler">𝐌𝐨𝐢𝐬𝐭𝐮𝐫𝐞 𝐂𝐨𝐨𝐥𝐞𝐫:</label>
                     <input type="text" class="form-control" id="moistureCooler">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label for="roomTemperature">อุณหภูมิห้อง:</label>
+                    <label for="roomTemperature">𝐑𝐨𝐨𝐦 𝐓𝐞𝐦𝐩𝐞𝐫𝐚𝐭𝐮𝐫𝐞:</label>
                     <input type="text" class="form-control" id="roomTemperature">
                 </div>
                 <div class="form-group">
-                    <label for="relativeHumidity">ความชื้นสัมพัทธ์:</label>
+                    <label for="relativeHumidity">𝐑𝐞𝐥𝐚𝐭𝐢𝐯𝐞 𝐇𝐮𝐦𝐢𝐝𝐢𝐭𝐲:</label>
                     <input type="text" class="form-control" id="relativeHumidity">
                 </div>
                 <div class="form-group">
-                    <label for="machineMoisture">ความชื้นหน้าเครื่อง:</label>
+                    <label for="machineMoisture">𝐌𝐚𝐜𝐡𝐢𝐧𝐞 𝐌𝐨𝐢𝐬𝐭𝐮𝐫𝐞:</label>
                     <input type="text" class="form-control" id="machineMoisture">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-sm-6">
-                    <label for="physicalIssues">กายภาพและปัญหาที่พบ:</label>
+                    <label for="physicalIssues">𝐏𝐡𝐲𝐬𝐢𝐜𝐚𝐥 𝐈𝐬𝐬𝐮𝐞𝐬:</label>
                     <textarea class="form-control" id="physicalIssues" rows="3"></textarea>
                 </div>
                 <div class="form-group col-sm-6">
-                    <label for="remarks">หมายเหตุ:</label>
+                    <label for="remarks">𝐑𝐞𝐦𝐚𝐫𝐤𝐬:</label>
                     <textarea class="form-control" id="remarks" rows="3"></textarea>
                 </div>
             </div>
             <div class="form-footer">
-                <button type="button" class="btn btn-custom">Back</button>
-                <button type="submit" class="btn btn-custom">Preview</button>
+                <button type="button" class="btn btn-custom">𝐁𝐚𝐜𝐤</button>
+                <button type="submit" class="btn btn-custom">𝐏𝐫𝐞𝐯𝐢𝐞𝐰</button>
             </div>
         </form>
     </div>
     <script>
         const images = [
-            "file:///E:/Python/Report/images/B1.jpg",
-            "file:///E:/Python/Report/images/B2.jpg",
-            "file:///E:/Python/Report/images/B3.jpg",
-            "file:///E:/Python/Report/images/B4.jpg",
-            "file:///E:/Python/Report/images/B5.jpg",
-            "file:///E:/Python/Report/images/B6.jpg",
-            "file:///E:/Python/Report/images/B7.jpg",
-            "file:///E:/Python/Report/images/B8.jpg",
-            "file:///E:/Python/Report/images/B9.jpg"
+            "file:///D:/Python/Report/images/B1.jpg",
+            "file:///D:/Python/Report/images/B2.jpg",
+            "file:///D:/Python/Report/images/B3.jpg",
+            "file:///D:/Python/Report/images/B4.jpg",
+            "file:///D:/Python/Report/images/B5.jpg",
+            "file:///D:/Python/Report/images/B6.jpg",
+            "file:///D:/Python/Report/images/B7.jpg",
+            "file:///D:/Python/Report/images/B8.jpg",
+            "file:///D:/Python/Report/images/B9.jpg"
         ];
 
         let currentIndex = 0;
