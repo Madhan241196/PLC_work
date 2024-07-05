@@ -12,7 +12,7 @@
             transition: background-image 1s ease-in-out;
         }
         .form-container {
-            max-width: 800px;
+            max-width: 900px; /* Increase the max-width to fit 3 columns */
             margin: 50px auto;
             padding: 20px;
             border: 1px solid #ccc;
@@ -40,7 +40,6 @@
         .form-header h4 {
             font-size: 1.2rem;
             color: #00796b;
-         
             padding: 5px 10px;
             border-radius: 5px;
             margin: 10px 0 0;
@@ -56,16 +55,36 @@
         .form-group label {
             font-weight: bold;
             color: #555;
+            font-size: 1rem; /* Adjust label font size */
         }
         .form-control {
             border-radius: 5px;
+            font-size: 1rem; /* Adjust input font size */
+            padding: 10px; /* Adjust input padding */
         }
-        .btn-primary {
-            background-color: #00796b;
-            border-color: #00796b;
+        .btn-custom {
+            background-color: #28a745;
+            border-color: #28a745;
             border-radius: 20px;
             padding: 10px 20px;
             font-size: 1rem;
+            color: white; /* Ensure the text color is white */
+        }
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 15px; /* Adjust space between rows */
+        }
+        .form-row .form-group {
+            flex: 1;
+            min-width: calc(33.33% - 10px); /* Adjust the width to fit 3 columns */
+            margin: 5px; /* Add margin for spacing between fields */
+        }
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
     </style>
 </head>
@@ -82,59 +101,47 @@
             </div>
         </div>
         <form>
-            <!-- New fields only -->
-            <div class="form-group row">
-                <label for="streamHeader" class="col-sm-4 col-form-label">Stream Header (bar):</label>
-                <div class="col-sm-8">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="streamHeader">Stream Header (bar):</label>
                     <input type="text" class="form-control" id="streamHeader">
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="moistureDyer" class="col-sm-4 col-form-label">ความชื้น Dyer:</label>
-                <div class="col-sm-8">
+                <div class="form-group">
+                    <label for="moistureDyer">ความชื้น Dyer:</label>
                     <input type="text" class="form-control" id="moistureDyer">
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="moistureCooler" class="col-sm-4 col-form-label">ความชื้น Cooler:</label>
-                <div class="col-sm-8">
+                <div class="form-group">
+                    <label for="moistureCooler">ความชื้น Cooler:</label>
                     <input type="text" class="form-control" id="moistureCooler">
                 </div>
             </div>
-            <div class="form-group row">
-                <label for="roomTemperature" class="col-sm-4 col-form-label">อุณหภูมิห้อง:</label>
-                <div class="col-sm-8">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="roomTemperature">อุณหภูมิห้อง:</label>
                     <input type="text" class="form-control" id="roomTemperature">
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="relativeHumidity" class="col-sm-4 col-form-label">ความชื้นสัมพัทธ์:</label>
-                <div class="col-sm-8">
+                <div class="form-group">
+                    <label for="relativeHumidity">ความชื้นสัมพัทธ์:</label>
                     <input type="text" class="form-control" id="relativeHumidity">
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="machineMoisture" class="col-sm-4 col-form-label">ความชื้นหน้าเครื่อง:</label>
-                <div class="col-sm-8">
+                <div class="form-group">
+                    <label for="machineMoisture">ความชื้นหน้าเครื่อง:</label>
                     <input type="text" class="form-control" id="machineMoisture">
                 </div>
             </div>
-            <div class="form-group row">
-                <label for="physicalIssues" class="col-sm-4 col-form-label">กายภาพและปัญหาที่พบ:</label>
-                <div class="col-sm-8">
+            <div class="form-row">
+                <div class="form-group col-sm-6">
+                    <label for="physicalIssues">กายภาพและปัญหาที่พบ:</label>
                     <textarea class="form-control" id="physicalIssues" rows="3"></textarea>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="remarks" class="col-sm-4 col-form-label">หมายเหตุ:</label>
-                <div class="col-sm-8">
+                <div class="form-group col-sm-6">
+                    <label for="remarks">หมายเหตุ:</label>
                     <textarea class="form-control" id="remarks" rows="3"></textarea>
                 </div>
             </div>
-            <div class="form-group row">
-                <div class="col-sm-12 text-right">
-                    <button type="submit" class="btn btn-primary">Preview</button>
-                </div>
+            <div class="form-footer">
+                <button type="button" class="btn btn-custom">Back</button>
+                <button type="submit" class="btn btn-custom">Preview</button>
             </div>
         </form>
     </div>
