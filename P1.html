@@ -9,55 +9,77 @@
 
         body {
             font-family: 'TH Sarabun PSK', sans-serif;
-            background-color: #f0f8ff;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            transition: background-image 1s ease-in-out;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
+            color: #ffffff; /* ตัวหนังสือสีขาว */
+            position: relative;
+            overflow: hidden;
         }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('D:/Python/report/images/B1.jpg');
+            background-size: cover; /* ให้ภาพพื้นหลังเต็มหน้าจอ */
+            background-repeat: no-repeat;
+            filter: blur(8px); /* ทำให้ภาพพื้นหลังเบลอ */
+            z-index: -1;
+        }
+
         .container {
             width: 90%;
             max-width: 600px;
             padding: 20px;
-            border: 1px solid #ccc;
+            border: 1px solid #cccccc00;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background-color: rgba(255, 255, 255, 0.8); /* เพิ่มความโปร่งใส */
+            box-shadow: 0 0 20px rgb(255, 255, 255);
+            background-color: rgba(45, 111, 186, 0.778); /* เพิ่มความโปร่งใส */
+            position: relative;
+            z-index: 1;
         }
+
         h1, h2 {
             text-align: center;
             margin: 10px 0;
             font-family: 'TH Sarabun PSK', sans-serif;
             font-weight: bold;
         }
+
         .logo-container {
             display: flex;
             justify-content: center;
             align-items: center;
         }
+
         .logo-container img {
             margin: 0 10px; /* เพิ่มระยะห่างระหว่างภาพ */
             width: 100px; /* ปรับขนาดภาพตามต้องการ */
         }
+
         h2 {
-            color: red; /* สีแดง */
+            color: #e7f302f1; /* สีแดง */
         }
+
         form {
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-gap: 10px;
         }
+
         label {
             display: block;
             margin-top: 10px;
-            color: #555;
+            color: #ffffff; /* ตัวหนังสือสีขาว */
         }
+
         input[type="text"], input[type="date"], input[type="time"], select {
             width: 100%;
             padding: 10px;
@@ -65,23 +87,28 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
+            background-color: #eee3e3; /* สีพื้นหลังของ input */
+            color: #161414; /* ตัวหนังสือสีขาว */
         }
+
         .full-width {
             grid-column: span 2;
         }
+
         input[type="submit"] {
             grid-column: span 2;
             padding: 15px;
             margin-top: 20px;
             border: none;
             border-radius: 5px;
-            background-color: #4CAF50; /* สีเขียว */
-            color: white;
+            background-color: #fefffeb5; /* สีเขียว */
+            color: rgb(38, 36, 36);
             font-size: 18px;
             cursor: pointer;
         }
+
         input[type="submit"]:hover {
-            background-color: #45a049; /* สีเขียวเข้มเมื่อ hover */
+            background-color: #361ca8; /* สีเขียวเข้มเมื่อ hover */
         }
     </style>
     <script>
@@ -99,9 +126,9 @@
 <body>
     <div class="container">
         <div class="logo-container">
-            <img src="D:\Python\report\images\logo-BokDok.png" alt="Logo BokDok">
-            <img src="D:\Python\report\images\logo.png" alt="Logo">
-            <img src="D:\Python\report\images\logo-CattyCat.png" alt="Logo CattyCat">
+            <img src="D:/Python/report/images/logo-BokDok.png" alt="Logo BokDok">
+            <img src="D:/Python/report/images/logo.png" alt="Logo">
+            <img src="D:/Python/report/images/logo-CattyCat.png" alt="Logo CattyCat">
         </div>
         <h1>𝐁𝐥𝐮𝐞𝐟𝐚𝐥𝐨 𝐏𝐞𝐭𝐜𝐚𝐫𝐞 𝐂𝐨., 𝐋𝐭𝐝.</h1>
         <h2>𝐄𝐱𝐭𝐫𝐮𝐝𝐞 𝐚𝐧𝐝 𝐃𝐫𝐲𝐞𝐫 𝐖𝐨𝐫𝐤𝐢𝐧𝐠 𝐑𝐞𝐜𝐨𝐫𝐝</h2>
@@ -113,9 +140,9 @@
             <div>
                 <label for="shift">𝐒𝐡𝐢𝐟𝐭:</label>
                 <select id="shift" name="shift">
-                    <option value="morning">เช้า: 08:30-16:30 น.</option>
-                    <option value="evening">เย็น: 16:00-00:30 น.</option>
-                    <option value="night">กลางคืน: 00:00-08:30 น.</option>
+                    <option value="morning">Morning: 07:30-16:30</option>
+                    <option value="evening">Evening: 17:00-22:00</option>
+                    <option value="night">Night: 23:00-07:30</option>
                 </select>
             </div>
             <div class="full-width">
@@ -133,31 +160,5 @@
             <input type="submit" value="Next">
         </form>
     </div>
-
-    <script>
-        const images = [
-            "file:///D:/Python/Report/images/B1.jpg",
-            "file:///D:/Python/Report/images/B2.jpg",
-            "file:///D:/Python/Report/images/B3.jpg",
-            "file:///D:/Python/Report/images/B4.jpg",
-            "file:///D:/Python/Report/images/B5.jpg",
-            "file:///D:/Python/Report/images/B6.jpg",
-            "file:///D:/Python/Report/images/B7.jpg",
-            "file:///D:/Python/Report/images/B8.jpg",
-            "file:///D:/Python/Report/images/B9.jpg"
-        ];
-
-        let currentIndex = 0;
-
-        function changeBackgroundImage() {
-            document.body.style.backgroundImage = `url(${images[currentIndex]})`;
-            currentIndex = (currentIndex + 1) % images.length;
-        }
-
-        setInterval(changeBackgroundImage, 3000); // เปลี่ยนภาพทุก ๆ 3 วินาที
-
-        // เริ่มต้นด้วยการเรียกฟังก์ชันเปลี่ยนภาพครั้งแรก
-        changeBackgroundImage();
-    </script>
 </body>
 </html>
