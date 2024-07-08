@@ -7,18 +7,25 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
+            background-image: url("file:///D:/Python/report/images/B1.jpg");
             background-size: cover;
             background-position: center;
-            transition: background-image 1s ease-in-out;
+            color: white;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
         }
         .form-container {
-            max-width: 900px; /* Increase the max-width to fit 3 columns */
+            max-width: 900px;
             margin: 50px auto;
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background-color: rgba(255, 255, 255, 0.9); /* Make form background slightly transparent */
+            background-color: rgba(45, 111, 186, 0.778);
         }
         .form-header {
             text-align: center;
@@ -29,7 +36,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px; /* Adjust padding to move logos slightly towards the center */
+            padding: 0 20px;
         }
         .form-header .center-content {
             text-align: center;
@@ -37,7 +44,7 @@
         }
         .form-header h2 {
             font-size: 1.5rem;
-            color: #333;
+            color: white;
             margin: 10px 0;
         }
         .form-header .info-content {
@@ -45,7 +52,7 @@
             justify-content: center;
             align-items: center;
             font-size: 1.2rem;
-            color: #00796b;
+            color: white;
             padding: 5px 10px;
             border-radius: 5px;
             margin: 10px 0 0;
@@ -61,33 +68,38 @@
         }
         .form-group label {
             font-weight: bold;
-            color: #555;
-            font-size: 1rem; /* Adjust label font size */
+            color: white;
+            font-size: 1rem;
         }
         .form-control {
             border-radius: 5px;
-            font-size: 1rem; /* Adjust input font size */
-            padding: 10px; /* Adjust input padding */
+            font-size: 1rem;
+            padding: 10px;
         }
         .btn-custom {
-            background-color: #28a745;
-            border-color: #28a745;
+            background-color: #fefffeb5;
+            border-color: #fefffeb5;
             border-radius: 20px;
             padding: 10px 20px;
             font-size: 1rem;
-            color: white; /* Ensure the text color is white */
+            color: white;
             margin: 5px;
         }
+    
+        .btn:hover {
+            background-color: #361ca8; /* สีเขียวเข้มเมื่อ hover */
+            border-color:#361ca8; /* สีเขียวเข้มเมื่อ hover */
+        }    
         .form-row {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            margin-bottom: 15px; /* Adjust space between rows */
+            margin-bottom: 15px;
         }
         .form-row .form-group {
             flex: 1;
-            min-width: calc(33.33% - 10px); /* Adjust the width to fit 3 columns */
-            margin: 5px; /* Add margin for spacing between fields */
+            min-width: calc(33.33% - 10px);
+            margin: 5px;
         }
         .form-footer {
             display: flex;
@@ -95,18 +107,29 @@
             align-items: center;
         }
         .black-text {
-            color: black;
+            color: white;
         }
         .red-text {
-            color: red;
+            color:  #fefffeb5;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            filter: blur(10px);
+            z-index: -1;
         }
     </style>
 </head>
 <body>
+    <div class="overlay"></div>
     <div class="container form-container">
         <div class="form-header">
             <div class="header-content">
-                <img src="D:\Python\report\logo.png" alt="Logo" class="logo-left">
+                <img src="D:\Python\report\images\logo.png" alt="Logo" class="logo-left">
                 <div class="center-content">
                     <h2><span class="black-text">𝐁𝐥𝐮𝐞𝐟𝐚𝐥𝐨</span> <span class="red-text">𝐏𝐞𝐭𝐜𝐚𝐫𝐞</span></h2>
                     <div class="info-content">
@@ -115,7 +138,7 @@
                         <div>Date: <span id="date">𝟐𝟎𝟐𝟒-𝟎𝟕-𝟎𝟓</span></div>
                     </div>
                 </div>
-                <img src="D:\Python\report\logo-B&C.png" alt="Logo B&C" class="logo-right">
+                <img src="D:\Python\report\images\logo-B&C.png" alt="Logo B&C" class="logo-right">
             </div>
         </div>
         <form>
@@ -163,28 +186,5 @@
             </div>
         </form>
     </div>
-    <script>
-        const images = [
-            "file:///D:/Python/report/images/B1.jpg",
-            "file:///D:/Python/report/images/B2.jpg",
-            "file:///D:/Python/report/images/B3.jpg",
-            "file:///D:/Python/report/images/B4.jpg",
-            "file:///D:/Python/report/images/B5.jpg",
-            "file:///D:/Python/report/images/B6.jpg",
-            "file:///D:/Python/report/images/B7.jpg",
-            "file:///D:/Python/report/images/B8.jpg",
-            "file:///D:/Python/report/images/B9.jpg"
-        ];
-
-        let currentIndex = 0;
-
-        function changeBackgroundImage() {
-            document.body.style.backgroundImage = `url(${images[currentIndex]})`;
-            currentIndex = (currentIndex + 1) % images.length;
-        }
-
-        setInterval(changeBackgroundImage, 3000);
-        window.onload = changeBackgroundImage;
-    </script>
 </body>
 </html>
