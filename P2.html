@@ -12,17 +12,29 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            background: url('D:/Python/report/images/B1.jpg') no-repeat center center fixed; /* ใช้ภาพเดียวเป็นพื้นหลัง */
             background-size: cover;
-            background-repeat: no-repeat;
-            transition: background-image 1s ease-in-out;
+        }
+        .blurred-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            filter: blur(10px); /* ปรับความเบลอของภาพ */
+            z-index: -1; /* ทำให้เบื้องหลังเนื้อหา */
         }
         .container {
             width: 90%;
             max-width: 800px;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8); /* ปรับสีพื้นหลังเป็นโปร่งใส */
+            background-color: rgba(45, 111, 186, 0.778); /* ปรับสีพื้นหลังเป็นโปร่งใส */
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1; /* ทำให้เนื้อหาอยู่บนพื้นหลังเบลอ */
+            color: white; /* ตั้งค่าสีตัวอักษรเป็นสีขาว */
         }
         .header {
             display: flex;
@@ -56,7 +68,7 @@
             font-size: 1.5em;
         }
         .header-center h1 .black {
-            color: #000000; /* เปลี่ยนสีของคำว่า BlueFalo เป็นสีดำ */
+            color: white; /* เปลี่ยนสีของคำว่า BlueFalo เป็นสีขาว */
         }
         .header-center h1 .red {
             background: linear-gradient(to right, #d32f2f, #b71c1c);
@@ -71,7 +83,7 @@
         .header-info div {
             font-size: 1em;
             font-weight: bold;
-            color: #000000;
+            color: yellow; /* ตั้งค่าสีตัวอักษรเป็นสีเหลือง */
         }
         .form-group {
             margin-bottom: 10px;
@@ -80,6 +92,7 @@
             display: block;
             margin-bottom: 5px;
             font-size: 0.9em;
+            color: white; /* ตั้งค่าสีตัวอักษรเป็นสีขาว */
         }
         .form-group input, .form-group select {
             width: 100%;
@@ -107,30 +120,31 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            background-color: #4CAF50; /* สีเขียวตามภาพ */
-            color: white;
+            background-color: #fefffeb5; /* สีเขียวตามภาพ */
+            color: rgb(38, 36, 36);;
         }
         .form-actions button:hover {
-            background-color: #45a049; /* สีเขียวเข้มขึ้นเมื่อ hover */
+            background-color: #361ca8; /* สีเขียวเข้มขึ้นเมื่อ hover */ 
         }
     </style>
 </head>
 <body>
+    <div class="blurred-background"></div> <!-- เพิ่ม div นี้เพื่อทำให้ภาพพื้นหลังเบลอ -->
     <div class="container" id="mainContainer">
         <div class="header">
             <div class="header-left">
                 <img src="file:///D:/Python/report/images/logo.png" alt="BlueFalo Petcare">
             </div>
             <div class="header-center">
-                <h1><span class="black">BlueFalo</span> <span class="red">Petcare</span></h1>
+                <h1><span class="black">BlueFalo</span> <span class="white">Petcare</span></h1>
                 <div class="header-info">
                     <div id="statusUser">User: Example User</div>
                     <div id="statusShift">Shift: เช้า</div>
-                    <div id="statusDate">Date: 5 กรกฎาคม 2567</div>
+                    <div id="statusDate">Date: 6 กรกฎาคม 2567</div>
                 </div>
             </div>
             <div class="header-right">
-                <img src="file:///D:/Python/report/images/logo-B&C.png" alt="B&C Logo">
+                <img src="file:///E:/Python/Report/logo-B&C.png" alt="B&C Logo">
             </div>
         </div>
         <form id="dataForm">
@@ -201,29 +215,7 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
     <script>
-        const images = [
-            "D:/Python/report/images/B1.jpg",
-            "D:/Python/report/images/B2.jpg",
-            "D:/Python/report/images/B3.jpg",
-            "D:/Python/report/images/B4.jpg",
-            "D:/Python/report/images/B5.jpg",
-            "D:/Python/report/images/B6.jpg",
-            "D:/Python/report/images/B7.jpg",
-            "D:/Python/report/images/B8.jpg",
-            "D:/Python/report/images/B9.jpg",
-            "D:/Python/report/images/B10.jpg"
-        ];
-        let currentImageIndex = 0;
-
-        function changeBackgroundImage() {
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            document.body.style.backgroundImage = `url('${images[currentImageIndex]}')`;
-        }
-
-        setInterval(changeBackgroundImage, 3000);
-
         document.addEventListener("DOMContentLoaded", () => {
-            document.body.style.backgroundImage = `url('${images[currentImageIndex]}')`;
             const statusDate = document.getElementById('statusDate');
             const currentDate = new Date();
             const options = { year: 'numeric', month: 'long', day: 'numeric' };

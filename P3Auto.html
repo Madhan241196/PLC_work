@@ -6,18 +6,41 @@
     <title>Bluefalo Petcare - Extrude and Dryer Form</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        @font-face {
+            font-family: 'FancyFont';
+            src: url('https://example.com/fancyfont.woff2') format('woff2'), /* URL ของฟอนต์ */
+                 url('https://example.com/fancyfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
         body {
+            position: relative;
             background-size: cover;
             background-repeat: no-repeat;
-            transition: background-image 1s ease-in-out;
+            font-family: 'FancyFont', sans-serif; /* ใช้ฟอนต์แบบ fancy text */
+        }
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("D:/Python/report/images/B1.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            filter: blur(10px); /* ระดับการเบลอ */
+            z-index: -1;
         }
         .container {
-            background-color: rgba(255, 255, 255, 0.8); /* พื้นหลังสีขาวโปร่งแสง */
+            position: relative;
+            background-color: rgba(45, 111, 186, 0.778); /* พื้นหลังสีขาวโปร่งแสง */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             max-width: 800px; /* ปรับขนาดความกว้างของคอนเทนเนอร์ */
             margin: 20px auto; /* จัดกึ่งกลางและระยะห่างด้านบนและล่าง */
+            z-index: 1;
+            color: rgb(251, 251, 251); /* เปลี่ยนสีตัวหนังสือเป็นสีขาว */
         }
         .header {
             display: flex;
@@ -35,7 +58,7 @@
         .header h4 {
             font-size: 0.9em; /* ปรับขนาดของหัวข้อรอง */
             margin: 0;
-            color: #28a745; /* สีเขียวตามปุ่ม */
+            color: white; /* เปลี่ยนสีข้อความเป็นสีขาว */
         }
         form {
             font-size: 14px;
@@ -47,157 +70,136 @@
         .form-control {
             font-size: 0.9em; /* ปรับขนาดฟอนต์ของ input */
             padding: 8px;
+            color: black; /* สีของ input */
         }
         .btn {
             font-size: 0.9em; /* ปรับขนาดฟอนต์ของปุ่ม */
             padding: 8px 16px;
-            background-color: #28a745; /* สีเขียว */
+            background-color: #fefffeb5; /* สีเขียว */
             border-color: #28a745; /* สีเขียว */
             color: white; /* สีของตัวอักษร */
         }
         .btn:hover {
-            background-color: #218838; /* สีเขียวเข้มเมื่อ hover */
-            border-color: #1e7e34; /* สีเขียวเข้มเมื่อ hover */
+            background-color: #361ca8; /* สีเขียวเข้มเมื่อ hover */
+            border-color:#361ca8; /* สีเขียวเข้มเมื่อ hover */
         }
     </style>
 </head>
 <body>
+    <div class="background"></div>
     <div class="container">
         <div class="header">
             <img src="D:/Python/report/images/logo.png" alt="Bluefalo Petcare Logo">
             <div class="text-center">
-                <h2>BlueFalo <span style="color: red;">Petcare</span></h2>
-                <h4>User: <span id="user"></span> | Shift: <span id="shift"></span> | Date: <span id="date"></span></h4>
+                <h2>𝐁𝐥𝐮𝐞𝐅𝐚𝐥𝐨 <span style="color: rgb(202, 202, 202);">𝐏𝐞𝐭𝐜𝐚𝐫𝐞</span></h2>
+                <h4>User: <span id="user">𝐉𝐨𝐡𝐧 𝐃𝐨𝐞</span> | Shift: <span id="shift">𝐌𝐨𝐫𝐧𝐢𝐧𝐠</span> | Date: <span id="date">7/6/2024</span></h4>
             </div>
-            <img src="D:/Python/report/logo-B&C.png" alt="Bok Dok & Catty Cat Logo">
+            <img src="E:/Python/Report/logo-B&C.png" alt="Bok Dok & Catty Cat Logo">
         </div>
         <form>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="timeSpeedScrewFeeder">Time/Speed Screw Feeder (tons/hr):</label>
+                    <label for="timeSpeedScrewFeeder">𝐓𝐢𝐦𝐞/𝐒𝐩𝐞𝐞𝐝 𝐒𝐜𝐫𝐞𝐰 𝐅𝐞𝐞𝐝𝐞𝐫 (𝐭𝐨𝐧𝐬/𝐡𝐫):</label>
                     <input type="text" class="form-control" id="timeSpeedScrewFeeder">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="feedRate">Feed Rate (kgs/hr):</label>
+                    <label for="feedRate">𝐅𝐞𝐞𝐝 𝐑𝐚𝐭𝐞 (𝐤𝐠𝐬/𝐡𝐫):</label>
                     <input type="text" class="form-control" id="feedRate">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="extLoad">Ext. Load (%):</label>
+                    <label for="extLoad">𝐄𝐱𝐭. 𝐋𝐨𝐚𝐝 (𝟏𝐗):</label>
                     <input type="text" class="form-control" id="extLoad">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="extruderSpeed">Extruder Speed (rpm):</label>
+                    <label for="extruderSpeed">𝐄𝐱𝐭𝐫𝐮𝐝𝐞𝐫 𝐒𝐩𝐞𝐞𝐝 (𝐫𝐩𝐦):</label>
                     <input type="text" class="form-control" id="extruderSpeed">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="knifeSpeed">Knife Speed (rpm):</label>
+                    <label for="knifeSpeed">𝐊𝐧𝐢𝐟𝐞 𝐒𝐩𝐞𝐞𝐝 (𝐫𝐩𝐦):</label>
                     <input type="text" class="form-control" id="knifeSpeed">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="downspoutTemp">Downspout Temp (°C):</label>
+                    <label for="downspoutTemp">𝐃𝐨𝐰𝐧𝐬𝐩𝐨𝐮𝐭 𝐓𝐞𝐦𝐩 (°𝐂):</label>
                     <input type="text" class="form-control" id="downspoutTemp">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label for="tempBarrel1">Temp. Barrel 1 (°C):</label>
+                    <label for="tempBarrel1">𝐓𝐞𝐦𝐩. 𝐁𝐚𝐫𝐫𝐞𝐥 𝟏 (°𝐂):</label>
                     <input type="text" class="form-control" id="tempBarrel1">
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="tempBarrel2">Temp. Barrel 2 (°C):</label>
+                    <label for="tempBarrel2">𝐓𝐞𝐦𝐩. 𝐁𝐚𝐫𝐫𝐞𝐥 𝟐 (°𝐂):</label>
                     <input type="text" class="form-control" id="tempBarrel2">
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="tempBarrel3">Temp. Barrel 3 (°C):</label>
+                    <label for="tempBarrel3">𝐓𝐞𝐦𝐩. 𝐁𝐚𝐫𝐫𝐞𝐥 𝟑 (°𝐂):</label>
                     <input type="text" class="form-control" id="tempBarrel3">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="preCondSteam">Pre-cond. Steam (kgs/hr):</label>
+                    <label for="preCondSteam">𝐏𝐫𝐞-𝐜𝐨𝐧𝐝. 𝐒𝐭𝐞𝐚𝐦 (𝐤𝐠𝐬/𝐡𝐫):</label>
                     <input type="text" class="form-control" id="preCondSteam">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="preCondWater">Pre-cond. Water (L/hr):</label>
+                    <label for="preCondWater">𝐏𝐫𝐞-𝐜𝐨𝐧𝐝. 𝐖𝐚𝐭𝐞𝐫 (𝐋/𝐡𝐫):</label>
                     <input type="text" class="form-control" id="preCondWater">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="colorFlowInCond">Color Flow in Cond. (kgs/hr):</label>
+                    <label for="colorFlowInCond">𝐂𝐨𝐥𝐨𝐫 𝐅𝐥𝐨𝐰 𝐢𝐧 𝐂𝐨𝐧𝐝. (𝐤𝐠𝐬/𝐡𝐫):</label>
                     <input type="text" class="form-control" id="colorFlowInCond">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="fatFlowInCond">Fat Flow in Cond. (kgs/min):</label>
+                    <label for="fatFlowInCond">𝐅𝐚𝐭 𝐅𝐥𝐨𝐰 𝐢𝐧 𝐂𝐨𝐧𝐝. (𝐤𝐠𝐬/𝐦𝐢𝐧):</label>
                     <input type="text" class="form-control" id="fatFlowInCond">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="dryerTempZone1">Dryer Temp Zone 1:</label>
+                    <label for="dryerTempZone1">𝐃𝐫𝐲𝐞𝐫 𝐓𝐞𝐦𝐩 𝐙𝐨𝐧𝐞 𝟏:</label>
                     <input type="text" class="form-control" id="dryerTempZone1">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="dryerTempZone2">Dryer Temp Zone 2:</label>
+                    <label for="dryerTempZone2">𝐃𝐫𝐲𝐞𝐫 𝐓𝐞𝐦𝐩 𝐙𝐨𝐧𝐞 𝟐:</label>
                     <input type="text" class="form-control" id="dryerTempZone2">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="deckNo">Deck No. 1-5:</label>
+                    <label for="deckNo">𝐃𝐞𝐜𝐤 𝐍𝐨. 𝟏-𝟓:</label>
                     <input type="text" class="form-control" id="deckNo">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="recirBlow1">Recir. Blow 1:</label>
+                    <label for="recirBlow1">𝐑𝐞𝐜𝐢𝐫. 𝐁𝐥𝐨𝐰 𝟏:</label>
                     <input type="text" class="form-control" id="recirBlow1">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="recirBlow2">Recir. Blow 2:</label>
+                    <label for="recirBlow2">𝐑𝐞𝐜𝐢𝐫. 𝐁𝐥𝐨𝐰 𝟐:</label>
                     <input type="text" class="form-control" id="recirBlow2">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="capacity">Capacity (kg/hr):</label>
+                    <label for="capacity">𝐂𝐚𝐩𝐚𝐜𝐢𝐭𝐲 (𝐤𝐠/𝐡𝐫):</label>
                     <input type="text" class="form-control" id="capacity">
                 </div>
             </div>
             <div class="text-center"> <!-- เพิ่มการจัดกึ่งกลางให้ปุ่ม -->
-                <button type="submit" class="btn btn-primary">Next</button>
+                <button type="submit" class="btn btn-primary">𝐍𝐞𝐱𝐭</button>
             </div>
         </form>
     </div>
     <script>
-        const images = [
-            "D:/Python/report/images/B1.jpg",
-            "D:/Python/report/images/B2.jpg",
-            "D:/Python/report/images/B3.jpg",
-            "D:/Python/report/images/B4.jpg",
-            "D:/Python/report/images/B5.jpg",
-            "D:/Python/report/images/B6.jpg",
-            "D:/Python/report/images/B7.jpg",
-            "D:/Python/report/images/B8.jpg",
-            "D:/Python/report/images/B9.jpg",
-            "D:/Python/report/images/B10.jpg"
-        ];
-
-        let currentIndex = 0;
-
-        function changeBackground() {
-            document.body.style.backgroundImage = `url(${images[currentIndex]})`;
-            currentIndex = (currentIndex + 1) % images.length;
-        }
-
-        setInterval(changeBackground, 3000);
-        window.onload = changeBackground;
-
         // Example data for User, Shift, and Date
-        document.getElementById("user").textContent = "John Doe"; // Replace with actual user data
-        document.getElementById("shift").textContent = "Morning"; // Replace with actual shift data
+        document.getElementById("user").textContent = "𝐉𝐨𝐡𝐧 𝐃𝐨𝐞"; // Replace with actual user data
+        document.getElementById("shift").textContent = "𝐌𝐨𝐫𝐧𝐢𝐧𝐠"; // Replace with actual shift data
         document.getElementById("date").textContent = new Date().toLocaleDateString(); // Replace with actual date data
     </script>
 </body>
