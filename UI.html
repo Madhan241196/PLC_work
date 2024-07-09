@@ -249,7 +249,10 @@
                 </div>
                 <div class="form-group">
                     <label for="user">ชื่อ-นามสกุล:</label>
-                    <input type="text" id="user" name="user" pattern="[A-Za-zก-ฮะ-์]+" title="กรุณากรอกตัวอักษรเท่านั้น (ห้ามมีตัวเลข)" oninput="validateInput(event)">
+                    <select id="user" name="user">
+                        <option value="ดนัยวุฒิ วังทอง">ดนัยวุฒิ วังทอง</option>
+                        <option value="อานนท์ เหมลา">อานนท์ เหมลา</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="shift">ช่วงเวลา:</label>
