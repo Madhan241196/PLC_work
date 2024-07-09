@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บลูฟาโล่ เพ็ทแคร์ จำกัด</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=TH+Sarabun+PSK&display=swap');
+
+        body {
+            font-family: 'TH Sarabun PSK', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('D:/Python/report/images/B1.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            filter: blur(8px);
+            z-index: -1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            padding: 10px;
+            border: 1px solid #cccccc00;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgb(255, 255, 255);
+            background-color: rgba(45, 111, 186, 0.778);
+            position: relative;
+            z-index: 1;
+            overflow-y: auto;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin: 15px 0;
+            font-family: 'TH Sarabun PSK', sans-serif;
+            font-weight: bold;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-left, .logo-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-left img, .logo-right img {
+            margin: 0 10px;
+            width: 100px;
+        }
+
+        .title-container {
+            text-align: center;
+            flex-grow: 1;
+            max-width: 1100px;
+        }
+
+        h2 {
+            color: #e7f302f1;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #ffffff;
+        }
+
+        input[type="text"], input[type="date"], input[type="time"], select {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: #eee3e3;
+            color: #161414;
+            width: 100%;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .form-row.inline .form-group {
+            flex: 1 1 calc(20% - 10px);
+        }
+
+        .form-row.wide .form-group {
+            flex: 1 1 calc(16.666% - 10px);
+        }
+
+        .form-row.extra-wide .form-group {
+            flex: 1 1 calc(14.285% - 10px);
+        }
+
+        .notes {
+            width: 40%;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        input[type="submit"] {
+            display: block;
+            width: 25%;
+            padding: 15px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #fefffeb5;
+            color: rgb(38, 36, 36);
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #361ca8;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            text-align: center;
+        }
+
+        .popup img {
+            width: 200px;
+            height: 100px;
+        }
+
+        .popup .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: #000;
+        }
+
+        .popup button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color:#1c251c51;
+            color: rgb(38, 36, 36);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .popup button:hover {
+            background-color: #361ca8;
+        }
+    </style>
+    <script>
+        function validateInput(event) {
+            const input = event.target;
+            const pattern = /^[A-Za-zก-ฮะ-์]+$/;
+            if (!pattern.test(input.value)) {
+                input.setCustomValidity('กรุณากรอกตัวอักษรเท่านั้น (ห้ามมีตัวเลข)');
+            } else {
+                input.setCustomValidity('');
+            }
+        }
+
+        function openPopup(fieldName) {
+            const popup = document.getElementById("popup");
+            popup.style.display = "block";
+            document.getElementById("popup-title").innerText = `สแกน QR Code แสดงข้อมูล: ${fieldName}`;
+            document.getElementById("popup-input").name = fieldName;
+            document.getElementById("popup-input").placeholder = "กรอกข้อมูล";
+        }
+
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+
+        function saveData() {
+            const input = document.getElementById("popup-input").value;
+            const fieldName = document.getElementById("popup-title").innerText.split(': ')[1];
+            const field = document.querySelector(`[name="${fieldName}"]`);
+            if (field) {
+                field.value = input;
+            }
+            closePopup();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <div class="logo-left">
+                <img src="D:/Python/report/images/logo.png" alt="Logo">
+            </div>
+            <div class="title-container">
+                <h1>บริษัท บลูฟาโล่ เพ็ทแคร์ จำกัด.</h1>
+                <h2>บันทึกการทำงานของเครื่อง Extrude และเครื่อง Dryer</h2>
+            </div>
+            <div class="logo-right">
+                <img src="D:/Python/report/images/logo-BokDok.png" alt="Logo BokDok">
+                <img src="D:/Python/report/images/logo-CattyCat.png" alt="Logo CattyCat">
+            </div>
+        </div>
+        <form action="submit_form.php" method="post">
+            <div class="form-row wide">
+                <div class="form-group">
+                    <label for="extrude_no">𝐄𝐱𝐭𝐫𝐮𝐝𝐞 No:</label>
+                    <select id="extrude_no" name="extrude_no">
+                        <option value="1">𝐄𝐱𝐭𝐫𝐮𝐝𝐞 No:1</option>
+                        <option value="2">𝐄𝐱𝐭𝐫𝐮𝐝𝐞 No:2</option>
+                        <option value="3">𝐄𝐱𝐭𝐫𝐮𝐝𝐞 No:3</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="user">ชื่อ-นามสกุล:</label>
+                    <input type="text" id="user" name="user" pattern="[A-Za-zก-ฮะ-์]+" title="กรุณากรอกตัวอักษรเท่านั้น (ห้ามมีตัวเลข)" oninput="validateInput(event)">
+                </div>
+                <div class="form-group">
+                    <label for="shift">ช่วงเวลา:</label>
+                    <select id="shift" name="shift">
+                        <option value="morning">ตอนเช้า: 07:30-16:30</option>
+                        <option value="evening">ตอนเย็น: 17:00-22:00</option>
+                        <option value="night">กลางคืน: 23:00-07:30</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">วันที่:</label>
+                    <input type="date" id="date" name="date">
+                </div>
+                <div class="form-group">
+                    <label for="start_time">เริ่มต้น:</label>
+                    <input type="time" id="start_time" name="start_time">
+                </div>
+                <div class="form-group">
+                    <label for="end_time">สิ้นสุด:</label>
+                    <input type="time" id="end_time" name="end_time">
+                </div>
+            </div>
+            <div class="form-row wide">
+                <div class="form-group">
+                    <label for="food_name">ชื่ออาหาร:</label>
+                    <input type="text" id="food_name" name="food_name" placeholder="QR Code แสดงข้อมูล" onclick="openPopup('ชื่ออาหาร')">
+                </div>
+                <div class="form-group">
+                    <label for="formula_code">รหัสสูตร:</label>
+                    <input type="text" id="formula_code" name="formula_code" placeholder="QR Code แสดงข้อมูล" onclick="openPopup('รหัสสูตร')">
+                </div>
+                <div class="form-group">
+                    <label for="shape">รูปทรง:</label>
+                    <input type="text" id="shape" name="shape" placeholder="QR Code แสดงข้อมูล" onclick="openPopup('รูปทรง')">
+                </div>
+                <div class="form-group">
+                    <label for="color">สี:</label>
+                    <input type="text" id="color" name="color" placeholder="QR Code แสดงข้อมูล" onclick="openPopup('สี')">
+                </div>
+                <div class="form-group">
+                    <label for="lot">Lot:</label>
+                    <input type="text" id="lot" name="lot" placeholder="QR Code แสดงข้อมูล" onclick="openPopup('lot')">
+                </div>
+                <div class="form-group">
+                    <label for="size">ขนาด:</label>
+                    <input type="text" id="size" name="size">
+                </div>
+            </div>
+            <div class="form-row wide">
+                <div class="form-group">
+                    <label for="number_of_blades">จำนวนใบมีด:</label>
+                    <input type="text" id="number_of_blades" name="number_of_blades" >
+                </div>
+                <div class="form-group">
+                    <label for="number_dir">หมายเลข Dir:</label>
+                    <input type="text" id="number_dir" name="number_dir" >
+                </div>
+                <div class="form-group">
+                    <label for="oil">น้ำมัน:</label>
+                    <input type="text" id="oil" name="oil" >
+                </div>
+                <div class="form-group">
+                    <label for="lot_color_oil">Lot สี/น้ำมัน:</label>
+                    <input type="text" id="lot_color_oil" name="lot_color_oil" >
+                </div>
+                <div class="form-group">
+                    <label for="weight_color_oil">Weight สี/น้ำมัน:</label>
+                    <input type="text" id="weight_color_oil" name="weight_color_oil">
+                </div>
+            </div>
+            <div class="form-row extra-wide">
+                <div class="form-group">
+                    <label for="moisture_dryer">ความชื้น Dryer:</label>
+                    <input type="text" id="moisture_dryer" name="moisture_dryer">
+                </div>
+                <div class="form-group">
+                    <label for="moisture_cooler">ความชื้น Cooler:</label>
+                    <input type="text" id="moisture_cooler" name="moisture_cooler">
+                </div>
+                <div class="form-group">
+                    <label for="room_temperature">อุณหภูมิห้อง:</label>
+                    <input type="text" id="room_temperature" name="room_temperature">
+                </div>
+                <div class="form-group">
+                    <label for="humidity">ความชื้นสัมพัทธ์:</label>
+                    <input type="text" id="humidity" name="humidity">
+                </div>
+                <div class="form-group">
+                    <label for="machine_humidity">ความชื้นหน้าเครื่อง:</label>
+                    <input type="text" id="machine_humidity" name="machine_humidity">
+                </div>
+                <div class="form-group">
+                    <label for="problems">กายภาพและปัญหาที่พบ:</label>
+                    <input type="text" id="problems" name="problems">
+                </div>
+                <div class="notes">
+                    <label for="notes">หมายเหตุ:</label>
+                    <input type="text" id="notes" name="notes">
+                </div>
+            </div>
+            <div class="button-container">
+                <input type="submit" value="Next">
+            </div>
+        </form>
+    </div>
+
+    <!-- Popup -->
+    <div id="popup" class="popup">
+        <span class="close" onclick="closePopup()">✖</span>
+        
+        <h2 id="popup-title"></h2>
+       
+        <input type="text" id="popup-input" name="" placeholder="สแกน QR Code แสดงข้อมูล">
+        <button onclick="saveData()">Save</button>
+    </div>
+</body>
+</html>
